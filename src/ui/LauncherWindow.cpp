@@ -42,3 +42,8 @@ void LauncherWindow::on_push_button_minimize_clicked()
 {
     this->showMinimized();
 }
+
+void LauncherWindow::on_push_button_play_clicked()
+{
+    // TODO
+}

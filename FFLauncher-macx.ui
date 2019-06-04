@@ -164,6 +164,56 @@ QPushButton#push_button_close:pressed {
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="push_button_play">
+    <property name="geometry">
+     <rect>
+      <x>26</x>
+      <y>417</y>
+      <width>405</width>
+      <height>75</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>405</width>
+      <height>75</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>405</width>
+      <height>75</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#push_button_play:disabled {
+    background-image: url(:/png/assets/buttons_Play_disabled.png);
+}
+
+QPushButton#push_button_play {
+    border: none;
+    background-image: url(:/png/assets/buttons_Play_normal.png);
+    background-repeat: none;
+}
+
+QPushButton#push_button_play:hover {
+    background-image: url(:/png/assets/buttons_Play_over.png);
+}
+
+QPushButton#push_button_play:pressed {
+    background-image: url(:/png/assets/buttons_Play_pressed.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <widget class="QLabel" name="frame_toon_news">
     <property name="geometry">
      <rect>

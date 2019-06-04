@@ -18,6 +18,7 @@ public:
 private slots:
     void on_push_button_close_clicked();
     void on_push_button_minimize_clicked();
+    void on_push_button_play_clicked();
 
 private:
     Ui::FFLauncher *ui;
