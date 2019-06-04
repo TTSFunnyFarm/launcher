@@ -164,6 +164,46 @@ QPushButton#push_button_close:pressed {
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="frame_toon_news">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>16</y>
+      <width>431</width>
+      <height>401</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>431</width>
+      <height>401</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>431</width>
+      <height>401</height>
+     </size>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::RichText</enum>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="resources-win32.qrc">:/png/assets/frame_toon_news.png</pixmap>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

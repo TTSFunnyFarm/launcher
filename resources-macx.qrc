@@ -9,5 +9,6 @@
         <file>assets/buttons_Close_normal.png</file>
         <file>assets/buttons_Close_over.png</file>
         <file>assets/buttons_Close_pressed.png</file>
+        <file>assets/frame_toon_news.png</file>
     </qresource>
 </RCC>
