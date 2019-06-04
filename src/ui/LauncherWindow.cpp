@@ -31,3 +31,13 @@ LauncherWindow::~LauncherWindow()
 {
     delete ui;
 }
+
+void LauncherWindow::on_push_button_close_clicked()
+{
+    this->close();
+}
+
+void LauncherWindow::on_push_button_minimize_clicked()
+{
+    this->showMinimized();
+}

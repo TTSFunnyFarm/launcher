@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>FFLauncher</class>
  <widget class="QMainWindow" name="FFLauncher">
@@ -63,6 +64,106 @@
     background-image: url(:/png/assets/background.png);
 }</string>
    </property>
+   <widget class="QPushButton" name="push_button_minimize">
+    <property name="geometry">
+     <rect>
+      <x>845</x>
+      <y>9</y>
+      <width>44</width>
+      <height>45</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>44</width>
+      <height>45</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>44</width>
+      <height>45</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#push_button_minimize:disabled {
+    background-image: url(:/png/assets/buttons_Minimize_disabled.png);
+}
+
+QPushButton#push_button_minimize {
+    border: none;
+    background-image: url(:/png/assets/buttons_Minimize_normal.png);
+    background-repeat: none;
+}
+
+QPushButton#push_button_minimize:hover {
+    background-image: url(:/png/assets/buttons_Minimize_over.png);
+}
+
+QPushButton#push_button_minimize:pressed {
+    background-image: url(:/png/assets/buttons_Minimize_pressed.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="push_button_close">
+    <property name="geometry">
+     <rect>
+      <x>895</x>
+      <y>9</y>
+      <width>44</width>
+      <height>45</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>44</width>
+      <height>45</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>44</width>
+      <height>45</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#push_button_close:disabled {
+    background-image: url(:/png/assets/buttons_Close_disabled.png);
+}
+
+QPushButton#push_button_close {
+    border: none;
+    background-image: url(:/png/assets/buttons_Close_normal.png);
+    background-repeat: none;
+}
+
+QPushButton#push_button_close:hover {
+    background-image: url(:/png/assets/buttons_Close_over.png);
+}
+
+QPushButton#push_button_close:pressed {
+    background-image: url(:/png/assets/buttons_Close_pressed.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

@@ -1,5 +1,13 @@
 <RCC>
     <qresource prefix="/png">
         <file>assets/background.png</file>
+        <file>assets/buttons_Minimize_disabled.png</file>
+        <file>assets/buttons_Minimize_normal.png</file>
+        <file>assets/buttons_Minimize_over.png</file>
+        <file>assets/buttons_Minimize_pressed.png</file>
+        <file>assets/buttons_Close_disabled.png</file>
+        <file>assets/buttons_Close_normal.png</file>
+        <file>assets/buttons_Close_over.png</file>
+        <file>assets/buttons_Close_pressed.png</file>
     </qresource>
 </RCC>

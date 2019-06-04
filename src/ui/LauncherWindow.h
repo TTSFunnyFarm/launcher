@@ -15,6 +15,10 @@ public:
     explicit LauncherWindow(QWidget *parent = nullptr);
     ~LauncherWindow();
 
+private slots:
+    void on_push_button_close_clicked();
+    void on_push_button_minimize_clicked();
+
 private:
     Ui::FFLauncher *ui;
 };
