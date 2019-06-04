@@ -10,6 +10,8 @@
 #include "src/core/Constants.h"
 #include "src/core/Localizer.h"
 
+#include <QDesktopServices>
+
 LauncherWindow::LauncherWindow(QWidget *parent) :
     FramelessWindow(parent),
     ui(new Ui::FFLauncher)
@@ -46,4 +48,19 @@ void LauncherWindow::on_push_button_minimize_clicked()
 void LauncherWindow::on_push_button_play_clicked()
 {
     // TODO
+}
+
+void LauncherWindow::on_push_button_website_clicked()
+{
+    QDesktopServices::openUrl(QUrl(URL_WEBSITE));
+}
+
+void LauncherWindow::on_push_button_settings_clicked()
+{
+    // TODO
+}
+
+void LauncherWindow::on_push_button_discord_clicked()
+{
+    QDesktopServices::openUrl(QUrl(URL_DISCORD));
 }

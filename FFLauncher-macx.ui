@@ -214,6 +214,156 @@ QPushButton#push_button_play:pressed {
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="push_button_website">
+    <property name="geometry">
+     <rect>
+      <x>49</x>
+      <y>490</y>
+      <width>118</width>
+      <height>45</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>118</width>
+      <height>45</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>118</width>
+      <height>45</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#push_button_website:disabled {
+    background-image: url(:/png/assets/buttons_Website_disabled.png);
+}
+
+QPushButton#push_button_website {
+    border: none;
+    background-image: url(:/png/assets/buttons_Website_normal.png);
+    background-repeat: none;
+}
+
+QPushButton#push_button_website:hover {
+    background-image: url(:/png/assets/buttons_Website_over.png);
+}
+
+QPushButton#push_button_website:pressed {
+    background-image: url(:/png/assets/buttons_Website_pressed.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="push_button_settings">
+    <property name="geometry">
+     <rect>
+      <x>169</x>
+      <y>491</y>
+      <width>118</width>
+      <height>45</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>118</width>
+      <height>45</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>118</width>
+      <height>45</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#push_button_settings:disabled {
+    background-image: url(:/png/assets/buttons_Settings_disabled.png);
+}
+
+QPushButton#push_button_settings {
+    border: none;
+    background-image: url(:/png/assets/buttons_Settings_normal.png);
+    background-repeat: none;
+}
+
+QPushButton#push_button_settings:hover {
+    background-image: url(:/png/assets/buttons_Settings_over.png);
+}
+
+QPushButton#push_button_settings:pressed {
+    background-image: url(:/png/assets/buttons_Settings_pressed.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="push_button_discord">
+    <property name="geometry">
+     <rect>
+      <x>289</x>
+      <y>491</y>
+      <width>118</width>
+      <height>45</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>118</width>
+      <height>45</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>118</width>
+      <height>45</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#push_button_discord:disabled {
+    background-image: url(:/png/assets/buttons_Discord_disabled.png);
+}
+
+QPushButton#push_button_discord {
+    border: none;
+    background-image: url(:/png/assets/buttons_Discord_normal.png);
+    background-repeat: none;
+}
+
+QPushButton#push_button_discord:hover {
+    background-image: url(:/png/assets/buttons_Discord_over.png);
+}
+
+QPushButton#push_button_discord:pressed {
+    background-image: url(:/png/assets/buttons_Discord_pressed.png);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <widget class="QLabel" name="frame_toon_news">
     <property name="geometry">
      <rect>

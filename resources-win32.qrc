@@ -16,6 +16,18 @@
         <file>assets/buttons_Play_normal.png</file>
         <file>assets/buttons_Play_over.png</file>
         <file>assets/buttons_Play_pressed.png</file>
+        <file>assets/buttons_Website_disabled.png</file>
+        <file>assets/buttons_Website_normal.png</file>
+        <file>assets/buttons_Website_over.png</file>
+        <file>assets/buttons_Website_pressed.png</file>
+        <file>assets/buttons_Settings_disabled.png</file>
+        <file>assets/buttons_Settings_normal.png</file>
+        <file>assets/buttons_Settings_over.png</file>
+        <file>assets/buttons_Settings_pressed.png</file>
+        <file>assets/buttons_Discord_disabled.png</file>
+        <file>assets/buttons_Discord_normal.png</file>
+        <file>assets/buttons_Discord_over.png</file>
+        <file>assets/buttons_Discord_pressed.png</file>
         <file>assets/frame_toon_news.png</file>
     </qresource>
 </RCC>
