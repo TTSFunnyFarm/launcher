@@ -33,12 +33,11 @@ void FramelessWindow::setResizable(bool resizable)
     {
         setWindowFlags(windowFlags() | Qt::WindowMaximizeButtonHint);
 
-        // The following code will restore the titlebar, thick frame, and Aero,
-        // which is what we want. We will get rid of the titlebar and thick
-        // frame again in nativeEvent() later.
+        // The following code will restore the titlebar and Aero, which is what we want.
+        // We will get rid of the titlebar again in nativeEvent() later.
         HWND hwnd = HWND(this->winId());
         DWORD style = DWORD(::GetWindowLong(hwnd, GWL_STYLE));
-        ::SetWindowLong(hwnd, GWL_STYLE, LONG(style | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CAPTION));
+        ::SetWindowLong(hwnd, GWL_STYLE, LONG(style | WS_MAXIMIZEBOX | WS_CAPTION));
     }
     else
     {
@@ -120,8 +119,7 @@ bool FramelessWindow::nativeEvent(const QByteArray &eventType, void *message, lo
                 params.rgrc[0].top -= 1;
             }
 
-            // This kills the window frame and title bar that
-            // we added with WS_THICKFRAME & WS_CAPTION.
+            // This kills the title bar that we added with WS_CAPTION.
             *result = WVR_REDRAW;
             return true;
         } // end case WM_NCCALCSIZE
@@ -276,6 +274,11 @@ bool FramelessWindow::nativeEvent(const QByteArray &eventType, void *message, lo
 
             return false;
         } // end case WM_GETMINMAXINFO
+        case WM_NCLBUTTONDBLCLK:
+        {
+            *result = 0;
+            return true;
+        }
         default:
         {
             return QMainWindow::nativeEvent(eventType, message, result);
