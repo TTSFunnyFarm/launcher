@@ -56,6 +56,8 @@ macx {
 
     RESOURCES += \
         resources-win32.qrc
+
+    RC_ICONS += assets/icon.ico
 }
 
 # Default rules for deployment.

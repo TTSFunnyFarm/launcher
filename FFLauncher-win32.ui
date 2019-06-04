@@ -33,6 +33,10 @@
   <property name="windowTitle">
    <string>Toontown's Funny Farm</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources-win32.qrc">
+    <normaloff>:/ico/assets/icon.ico</normaloff>:/ico/assets/icon.ico</iconset>
+  </property>
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
