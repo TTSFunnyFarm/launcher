@@ -18,6 +18,7 @@ LauncherWindow::LauncherWindow(QWidget *parent) :
 
 #ifdef Q_OS_WIN
     setTitleBar(ui->launcher_window);
+    addIgnoreWidget(ui->frame_toon_news);
 #endif
 
 #ifdef Q_OS_MAC
