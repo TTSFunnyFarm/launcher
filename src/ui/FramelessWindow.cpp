@@ -193,14 +193,6 @@ void FramelessWindow::getContentsMargins(int *left, int *top, int *right, int *b
     {
         return;
     }
-
-    if (isMaximized())
-    {
-        *left -= m_frames.left();
-        *top -= m_frames.top();
-        *right -= m_frames.right();
-        *bottom -= m_frames.bottom();
-    }
 }
 
 QRect FramelessWindow::contentsRect() const
@@ -217,12 +209,6 @@ QRect FramelessWindow::contentsRect() const
 
 void FramelessWindow::showFullScreen()
 {
-    if (isMaximized())
-    {
-        QMainWindow::setContentsMargins(m_margins);
-        m_frames = QMargins();
-    }
-
     QMainWindow::showFullScreen();
 }
 
