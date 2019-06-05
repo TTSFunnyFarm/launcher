@@ -124,16 +124,6 @@ class FramelessWindow : public QMainWindow
 public:
     explicit FramelessWindow(QWidget *parent = nullptr);
 
-public:
-    // If resizable is set to false, the window cannot be resized
-    // by the user, but can still be resized programmatically.
-    void setResizable(bool resizable = true);
-    bool isResizable() {return m_bResizable;}
-
-    // Sets the border width. Within this area, the window can be
-    // resized by the user.
-    void setResizableAreaWidth(int width = 5);
-
 protected:
     // Sets a widget that will be treated as the system titlebar.
     void setTitleBar(QWidget* titlebar);
@@ -163,13 +153,9 @@ public slots:
 private:
     QWidget* m_titlebar;
     QList<QWidget*> m_whiteList;
-    int m_borderWidth;
 
     QMargins m_margins;
     QMargins m_frames;
-    bool m_bJustMaximized;
-
-    bool m_bResizable;
 };
 
 #endif // Q_OS_WIN
