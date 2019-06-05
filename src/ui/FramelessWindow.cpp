@@ -37,7 +37,9 @@ void FramelessWindow::setResizable(bool resizable)
         // We will get rid of the titlebar again in nativeEvent() later.
         HWND hwnd = HWND(this->winId());
         DWORD style = DWORD(::GetWindowLong(hwnd, GWL_STYLE));
-        ::SetWindowLong(hwnd, GWL_STYLE, LONG(style | WS_CAPTION));
+        style = style | WS_CAPTION;
+        style = style & (ULONG(~WS_SYSMENU));
+        ::SetWindowLong(hwnd, GWL_STYLE, LONG(style));
     }
     else
     {
