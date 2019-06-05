@@ -100,19 +100,15 @@ bool FramelessWindow::nativeEvent(const QByteArray &eventType, void *message, lo
         } // end case WM_NCCALCSIZE
         case WM_NCHITTEST:
         {
+            // We're not handling resizing as we don't actually want
+            // to allow window resizing at all.
             *result = 0;
 
             long x = GET_X_LPARAM(msg->lParam);
             long y = GET_Y_LPARAM(msg->lParam);
 
-            if (*result != 0)
-            {
-                return true;
-            }
-
-            // *result still equaling 0 means that the cursor is
-            // located outside the frame area, but it may also
-            // be located within the titlebar area.
+            // Assume that the cursor is either located outside
+            // the frame area, or within the titlebar area.
             if (!m_titlebar)
             {
                 return false;
@@ -146,10 +142,19 @@ bool FramelessWindow::nativeEvent(const QByteArray &eventType, void *message, lo
         } // end case WM_NCHITTEST
         case WM_GETMINMAXINFO:
         {
+            // We don't want to allow window maximizing either,
+            // so we also ignore this. This has no effect on
+            // being able to minimize the window, which is
+            // still possible.
             return false;
         } // end case WM_GETMINMAXINFO
         case WM_NCLBUTTONDBLCLK:
         {
+            // Likewise, normally double clicking on the window
+            // would attempt to maximize the window (or whatever
+            // is considered to be a titlebar), so we want to
+            // ignore that as well to prevent the window from
+            // being maximized.
             *result = 0;
             return true;
         } // end case WM_NCLBUTTONDBLCLK
