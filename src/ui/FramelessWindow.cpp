@@ -31,13 +31,13 @@ void FramelessWindow::setResizable(bool resizable)
     m_bResizable = resizable;
     if (m_bResizable)
     {
-        setWindowFlags(windowFlags() | Qt::WindowMaximizeButtonHint);
+        setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
 
         // The following code will restore the titlebar and Aero, which is what we want.
         // We will get rid of the titlebar again in nativeEvent() later.
         HWND hwnd = HWND(this->winId());
         DWORD style = DWORD(::GetWindowLong(hwnd, GWL_STYLE));
-        ::SetWindowLong(hwnd, GWL_STYLE, LONG(style | WS_MAXIMIZEBOX | WS_CAPTION));
+        ::SetWindowLong(hwnd, GWL_STYLE, LONG(style | WS_CAPTION));
     }
     else
     {

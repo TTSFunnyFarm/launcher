@@ -5,7 +5,6 @@
 
 #ifdef Q_OS_WIN
 #include "ui_FFLauncher-win32.h"
-#include <QSysInfo>
 #endif // Q_OS_WIN
 
 #include "src/core/Constants.h"
@@ -22,10 +21,6 @@ LauncherWindow::LauncherWindow(QWidget *parent) :
 #ifdef Q_OS_WIN
     setTitleBar(ui->launcher_window);
     addIgnoreWidget(ui->frame_toon_news);
-    if (QSysInfo::productVersion() != "10")
-    {
-        setFixedSize(950, 540);
-    }
 #endif
 
 #ifdef Q_OS_MAC
