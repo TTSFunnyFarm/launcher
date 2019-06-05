@@ -16,7 +16,7 @@ At the bottom of this new list, tick both the "MSVC v141..." and "MSVC v140..." 
 Click the install button to finish installing Visual Studio Community 2019 with the adjustments you have made to the installation. Restart your computer when it asks you to post-installation.
 
 
-### Setting up Qt
+### Installing Qt
 
 Once you've done that, install Qt by downloading it from the website here: https://www.qt.io/download. In this tutorial I am using the free open-sourced version of Qt, but the commercial one may work if needed.
 
@@ -42,3 +42,26 @@ On the 'Select Components' screen, expand the list for 'Qt 5.12.3' and ensure th
 
 Read and agree to the license agreements presented to you, and click next. Leave the start menu folder as 'Qt' and hit install.
 
+### Running the launcher
+
+Once Qt has downloaded and installed, download the launcher files from this GitHub repo either as a zip file or via GitHub Desktop. I am going to be using GitHub Desktop.
+
+Once you've pulled the latest origin, open the 'FFLauncher.pro' file in Qt. You should see a screen that says 'Configure Project'.
+
+Hover over the 'Desktop Qt 5.12.3 MSVC2015 64bit' kit and click 'Manage...'. You will then be greeted with a screen listing your installed 'kits'.
+
+Click 'Desktop Qt 5.12.3 MSVC2017 64bit' in the kits list and and then change the following...
+
+### Compiler
+- C: from "<No compiler>" to "Microsoft Visual C++ Compiler 16.1.28922.388 (amd64)"
+- C++: from "<No compiler>" to "Microsoft Visual C++ Compiler 16.1.28922.388 (amd64)"
+
+...and then click OK to apply the changes.
+
+Once you have done that, untick the 'Desktop Qt 5.12.3 MSVC2015 64bit' kit and then make sure the new kit listed, 'Desktop Qt 5.12.3 MSVC2017 64bit', is ticked.
+
+Finally, click 'Configure project'.
+
+You should now be able to run the developer build of the Toontown's Funny Farm launcher by using the green play button in the bottom left of your screen.
+
+Once you click the play button, give your computer time to compile an on-the-fly version of the launcher that can be viewed and used as intended. It will proceed to launch automatically.
