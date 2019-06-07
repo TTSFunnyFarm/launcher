@@ -24,6 +24,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 CONFIG += c++11
 
+INCLUDEPATH += \
+    $$PWD/dependencies/bsdiff
+
 SOURCES += \
     src/core/main.cpp \
     src/ui/LauncherWindow.cpp
@@ -48,6 +51,9 @@ macx {
     RESOURCES += \
         resources-macx.qrc
 } win32 {
+    LIBS += \
+        $$PWD/dependencies/bsdiff/libbz2-static.lib
+
     SOURCES += \
         src/ui/FramelessWindow.cpp
 
