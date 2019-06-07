@@ -19,9 +19,10 @@
 
 class DownloadError : public std::runtime_error
 {
-  public:
+public:
     DownloadError(int error_code, const QString &error_string) :
-        std::runtime_error(error_string.toStdString()), m_error_code(error_code)
+        std::runtime_error(error_string.toStdString()),
+        m_error_code(error_code)
     {
     }
 
@@ -30,13 +31,13 @@ class DownloadError : public std::runtime_error
         return m_error_code;
     }
 
-  private:
+private:
     int m_error_code;
 };
 
 class DownloadThreadError : public QtConcurrent::Exception
 {
-  public:
+public:
     DownloadThreadError(DownloadError &error) : e(error)
     {
     }
@@ -56,7 +57,7 @@ class DownloadThreadError : public QtConcurrent::Exception
         return e;
     }
 
-  private:
+private:
     DownloadError e;
 };
 
@@ -64,7 +65,7 @@ class Updater : public QObject
 {
     Q_OBJECT
 
-  public:
+public:
     Updater(QUrl url);
     ~Updater();
 
@@ -75,17 +76,17 @@ class Updater : public QObject
     void parse_manifest_data(const QByteArray &data);
     bool update();
 
-  signals:
+signals:
     void download_error(int error_code, const QString &error_string);
     void download_progress(qint64 bytes_read, qint64 bytes_total, const QString &status);
     void extract_finished();
 
-  private slots:
+private slots:
     void readyRead();
     void finished();
     void downloadProgress(qint64 bytes_read, qint64 bytes_total);
 
-  private:
+private:
     QUrl m_url;
 
     QString m_launcher_version;
