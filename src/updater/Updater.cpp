@@ -1,7 +1,7 @@
 #include "Updater.h"
 
-#include "core/constants.h"
-#include "core/localizer.h"
+#include "src/core/Constants.h"
+#include "src/core/Localizer.h"
 
 #include <bzlib.h>
 
@@ -293,7 +293,7 @@ void Updater::extract_file(const QString &archive_path, const QString &output_pa
     output.append("/" + output_path);
 
     FILE *f = fopen(archive.toStdString().c_str(), "rb");
-    if (f == NULL)
+    if (f == nullptr)
     {
         emit this->extract_finished();
         try
@@ -308,7 +308,7 @@ void Updater::extract_file(const QString &archive_path, const QString &output_pa
     }
 
     int bzerror;
-    BZFILE *archive_file = BZ2_bzReadOpen(&bzerror, f, 0, 0, NULL, 0);
+    BZFILE *archive_file = BZ2_bzReadOpen(&bzerror, f, 0, 0, nullptr, 0);
     if (bzerror != BZ_OK)
     {
         emit this->extract_finished();
@@ -324,7 +324,7 @@ void Updater::extract_file(const QString &archive_path, const QString &output_pa
     }
 
     FILE *output_file = fopen(output.toStdString().c_str(), "wb");
-    if (output_file == NULL)
+    if (output_file == nullptr)
     {
         emit this->extract_finished();
         try

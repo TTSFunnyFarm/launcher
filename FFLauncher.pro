@@ -8,6 +8,8 @@ QT += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+QT += network concurrent
+
 TARGET = FFLauncher
 TEMPLATE = app
 
@@ -29,13 +31,15 @@ INCLUDEPATH += \
 
 SOURCES += \
     src/core/main.cpp \
-    src/ui/LauncherWindow.cpp
+    src/ui/LauncherWindow.cpp \
+    src/updater/Updater.cpp
 
 HEADERS += \
     src/core/Constants.h \
     src/core/Localizer.h \
+    src/ui/FramelessWindow.h \
     src/ui/LauncherWindow.h \
-    src/ui/FramelessWindow.h
+    src/updater/Updater.h
 
 macx {
     # Only include / compile these files on macOS:
