@@ -25,7 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 INCLUDEPATH += \
-    $$PWD/dependencies/bsdiff
+    $$PWD/dependencies/bzip2
 
 SOURCES += \
     src/core/main.cpp \
@@ -51,8 +51,13 @@ macx {
     RESOURCES += \
         resources-macx.qrc
 } win32 {
-    LIBS += \
-        $$PWD/dependencies/bsdiff/libbz2-static.lib
+    contains(QT_ARCH, i386) {
+        LIBS += \
+            $$PWD/dependencies/bzip2/libbz2-win32-x86.lib
+    } else {
+        LIBS += \
+            $$PWD/dependencies/bzip2/libbz2-win32-x86-64.lib
+    }
 
     SOURCES += \
         src/ui/FramelessWindow.cpp
