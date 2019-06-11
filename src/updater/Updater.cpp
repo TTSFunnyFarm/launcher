@@ -345,7 +345,7 @@ void Updater::extract_file(const QString &archive_path, const QString &output_pa
         if ((bzerror == BZ_OK) || bzerror == BZ_STREAM_END)
         {
             size_t nwritten = fwrite(buffer, 1, nread, output_file);
-            if (nwritten != (size_t) nread)
+            if (nwritten != static_cast<size_t>(nread))
             {
                 emit this->extract_finished();
                 try

@@ -9,6 +9,7 @@
 #include <cstdint>
 
 #include <QtConcurrent>
+#include <QException>
 #include <QObject>
 #include <QUrl>
 #include <QString>
@@ -35,7 +36,7 @@ private:
     int m_error_code;
 };
 
-class DownloadThreadError : public QtConcurrent::Exception
+class DownloadThreadError : public QException
 {
 public:
     DownloadThreadError(DownloadError &error) : e(error)
