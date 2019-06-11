@@ -1,6 +1,5 @@
 #include "Updater.h"
 
-#include "src/core/Constants.h"
 #include "src/core/Localizer.h"
 
 #include <bzlib.h>
