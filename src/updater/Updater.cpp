@@ -110,7 +110,7 @@ void Updater::parse_manifest_data(const QByteArray &data)
             char buffer[8192];
             while ((bytes_read = file.read(buffer, 8192)) > 0)
             {
-                hashval.addData(buffer, bytes_read);
+                hashval.addData(buffer, static_cast<int>(bytes_read));
             }
 
             QString hash_result(hashval.result().toHex());
@@ -343,11 +343,11 @@ void Updater::extract_file(const QString &archive_path, const QString &output_pa
     char buffer[4096];
     while (bzerror == BZ_OK)
     {
-        int nread = BZ2_bzRead(&bzerror, archive_file, buffer, sizeof(buffer));
+        size_t nread = static_cast<size_t>(BZ2_bzRead(&bzerror, archive_file, buffer, sizeof(buffer)));
         if ((bzerror == BZ_OK) || bzerror == BZ_STREAM_END)
         {
             size_t nwritten = fwrite(buffer, 1, nread, output_file);
-            if (nwritten != static_cast<size_t>(nread))
+            if (nwritten != nread)
             {
                 emit this->extract_finished();
                 try
