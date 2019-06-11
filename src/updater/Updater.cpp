@@ -292,8 +292,9 @@ void Updater::extract_file(const QString &archive_path, const QString &output_pa
     QString output = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
     output.append("/" + output_path);
 
-    FILE *f = fopen(archive.toStdString().c_str(), "rb");
-    if (f == nullptr)
+    FILE *f;
+    errno_t err = fopen_s(&f, archive.toStdString().c_str(), "rb");
+    if (err != 0)
     {
         emit this->extract_finished();
         try
@@ -323,8 +324,9 @@ void Updater::extract_file(const QString &archive_path, const QString &output_pa
         }
     }
 
-    FILE *output_file = fopen(output.toStdString().c_str(), "wb");
-    if (output_file == nullptr)
+    FILE *output_file;
+    errno_t output_err = fopen_s(&output_file, output.toStdString().c_str(), "wb");
+    if (output_err != 0)
     {
         emit this->extract_finished();
         try
