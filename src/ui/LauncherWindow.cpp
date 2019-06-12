@@ -14,7 +14,8 @@
 
 LauncherWindow::LauncherWindow(QWidget *parent) :
     FramelessWindow(parent),
-    ui(new Ui::FFLauncher)
+    ui(new Ui::FFLauncher),
+    updater(new Updater(URL_DOWNLOAD_MIRROR))
 {
     ui->setupUi(this);
 
@@ -32,6 +33,7 @@ LauncherWindow::LauncherWindow(QWidget *parent) :
 
 LauncherWindow::~LauncherWindow()
 {
+    delete updater;
     delete ui;
 }
 

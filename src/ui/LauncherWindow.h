@@ -2,6 +2,7 @@
 #define LAUNCHERWINDOW_H
 
 #include "FramelessWindow.h"
+#include "src/updater/Updater.h"
 
 namespace Ui {
 class FFLauncher;
@@ -25,6 +26,7 @@ private slots:
 
 private:
     Ui::FFLauncher *ui;
+    Updater *updater;
 };
 
 #endif // LAUNCHERWINDOW_H
