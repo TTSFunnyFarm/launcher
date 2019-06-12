@@ -56,6 +56,12 @@ macx {
     RESOURCES += \
         resources-macx.qrc
 } win32 {
+    CONFIG(debug, debug|release) {
+        BUILD_DIR = $$OUT_PWD/debug
+    } else {
+        BUILD_DIR = $$OUT_PWD/release
+    }
+
     INCLUDEPATH += \
         $$PWD/dependencies/openssl/include
 
@@ -64,11 +70,17 @@ macx {
             $$PWD/dependencies/bzip2/Win32/lib/libbz2.lib \
             $$PWD/dependencies/openssl/Win32/lib/libeay32.lib \
             $$PWD/dependencies/openssl/Win32/lib/ssleay32.lib
+
+        copydata.commands = \
+            $(COPY_DIR) $$shell_path($$PWD/dependencies/openssl/Win32/bin) $$shell_path($$BUILD_DIR)
     } else {
         LIBS += \
             $$PWD/dependencies/bzip2/Win64/lib/libbz2.lib \
             $$PWD/dependencies/openssl/Win64/lib/libeay32.lib \
             $$PWD/dependencies/openssl/Win64/lib/ssleay32.lib
+
+        copydata.commands = \
+            $(COPY_DIR) $$shell_path($$PWD/dependencies/openssl/Win64/bin) $$shell_path($$BUILD_DIR)
     }
 
     SOURCES += \
@@ -82,6 +94,17 @@ macx {
 
     RC_ICONS += \
         assets/icon.ico
+
+    first.depends = \
+        $(first) \
+        copydata
+
+    export(first.depends)
+    export(copydata.commands)
+
+    QMAKE_EXTRA_TARGETS += \
+        first \
+        copydata
 }
 
 # Default rules for deployment.
