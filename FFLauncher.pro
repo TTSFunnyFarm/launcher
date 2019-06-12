@@ -27,7 +27,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 INCLUDEPATH += \
-    $$PWD/dependencies/bzip2
+    $$PWD/dependencies/bzip2/include
 
 SOURCES += \
     src/core/main.cpp \
@@ -47,7 +47,8 @@ macx {
         src/ui/FramelessWindow.mm
 
     # Include Cocoa for macOS code:
-    LIBS += -framework Cocoa
+    LIBS += \
+        -framework Cocoa
 
     FORMS += \
         FFLauncher-macx.ui
@@ -57,10 +58,10 @@ macx {
 } win32 {
     contains(QT_ARCH, i386) {
         LIBS += \
-            $$PWD/dependencies/bzip2/libbz2-win32-x86.lib
+            $$PWD/dependencies/bzip2/Win32/lib/libbz2.lib
     } else {
         LIBS += \
-            $$PWD/dependencies/bzip2/libbz2-win32-x86-64.lib
+            $$PWD/dependencies/bzip2/Win64/lib/libbz2.lib
     }
 
     SOURCES += \
@@ -72,7 +73,8 @@ macx {
     RESOURCES += \
         resources-win32.qrc
 
-    RC_ICONS += assets/icon.ico
+    RC_ICONS += \
+        assets/icon.ico
 }
 
 # Default rules for deployment.

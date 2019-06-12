@@ -1,11 +1,11 @@
 project(libbz2)
 
 add_library(libbz2 STATIC
-    blocksort.c
-    bzlib.c
-    compress.c
-    crctable.c
-    decompress.c
-    huffman.c
-    randtable.c
+    src/blocksort.c
+    src/bzlib.c
+    src/compress.c
+    src/crctable.c
+    src/decompress.c
+    src/huffman.c
+    src/randtable.c
 )
