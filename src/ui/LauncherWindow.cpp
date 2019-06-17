@@ -65,7 +65,7 @@ void LauncherWindow::update_manifest()
     }
     else
     {
-        ui->label_game_version->setText(GUI_GAME_VERSION.arg(game_version));
+        ui->label_game_version->setText(GUI_GAME_VERSION.arg("v" + game_version));
     }
 
     if (launcher_version.isEmpty())
@@ -74,7 +74,7 @@ void LauncherWindow::update_manifest()
     }
     else
     {
-        ui->label_launcher_version->setText(GUI_LAUNCHER_VERSION.arg(launcher_version));
+        ui->label_launcher_version->setText(GUI_LAUNCHER_VERSION.arg("v" + launcher_version));
     }
 
     // Ensure our launcher is at the latest version:
