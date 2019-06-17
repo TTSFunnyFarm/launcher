@@ -52,7 +52,8 @@ void LauncherWindow::on_push_button_minimize_clicked()
 
 void LauncherWindow::on_push_button_play_clicked()
 {
-    // Disable the settings button:
+    // Disable the play & settings buttons:
+    ui->push_button_play->setEnabled(false);
     ui->push_button_settings->setEnabled(false);
 
     // Hide play button, show update frame:
