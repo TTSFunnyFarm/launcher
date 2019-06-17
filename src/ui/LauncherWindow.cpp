@@ -143,9 +143,25 @@ void LauncherWindow::on_push_button_play_clicked()
     ui->push_button_play->setEnabled(false);
     ui->push_button_settings->setEnabled(false);
 
-    // Hide play button, show update frame:
-    ui->push_button_play->setVisible(false);
-    ui->frame_update->setVisible(true);
+    // Attempt to update the game:
+    if (!update_game())
+    {
+        // The update failed, so go back to the main UI state:
+
+        // Enable the play & settings buttons:
+        ui->push_button_play->setEnabled(true);
+        ui->push_button_settings->setEnabled(true);
+
+        // Show play button, hide update frame:
+        ui->push_button_play->setVisible(true);
+        ui->frame_update->setVisible(false);
+
+        // We're done!
+        return;
+    }
+
+    // Alright, we're done! Start the game:
+    launch_game();
 }
 
 void LauncherWindow::on_push_button_website_clicked()
@@ -161,4 +177,35 @@ void LauncherWindow::on_push_button_settings_clicked()
 void LauncherWindow::on_push_button_discord_clicked()
 {
     QDesktopServices::openUrl(QUrl(URL_DISCORD));
+}
+
+void LauncherWindow::download_error(int error_code, const QString &error_string)
+{
+    // TODO
+}
+
+void LauncherWindow::download_progress(qint64 bytes_read, qint64 bytes_total, const QString &status)
+{
+    // TODO
+}
+
+bool LauncherWindow::update_game()
+{
+    // Connect the required slots:
+    QObject::connect(updater, SIGNAL(download_error(int, const QString &)),
+                     this, SLOT(download_error(int, const QString &)));
+    QObject::connect(updater, SIGNAL(download_progress(qint64, qint64, const QString &)),
+                     this, SLOT(download_progress(qint64, qint64, const QString &)));
+
+    // Hide play button, show update frame:
+    ui->push_button_play->setVisible(false);
+    ui->frame_update->setVisible(true);
+
+    // Begin downloading the updated files:
+    return updater->update();
+}
+
+void LauncherWindow::launch_game()
+{
+    // TODO
 }

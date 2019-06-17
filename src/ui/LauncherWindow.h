@@ -19,6 +19,8 @@ public:
     ~LauncherWindow();
 
     void update_manifest();
+    bool update_game();
+    void launch_game();
 
 private slots:
     void on_push_button_close_clicked();
@@ -27,6 +29,9 @@ private slots:
     void on_push_button_website_clicked();
     void on_push_button_settings_clicked();
     void on_push_button_discord_clicked();
+
+    void download_error(int error_code, const QString &error_string);
+    void download_progress(qint64 bytes_read, qint64 bytes_total, const QString &status);
 
 private:
     Ui::FFLauncher *ui;

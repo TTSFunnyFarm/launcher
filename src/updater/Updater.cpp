@@ -176,7 +176,7 @@ void Updater::download_file(const QString &relative_path)
         delete m_download_file;
         m_download_file = nullptr;
 
-        QString file_name = QFileInfo(relative).fileName();
+        QString file_name = QFileInfo(relative_path).fileName();
         throw DownloadError(ERROR_CODE_WRITE, ERROR_WRITE.arg(file_name));
     }
 
@@ -315,7 +315,7 @@ void Updater::extract_file(const QString &archive_path, const QString &output_pa
     }
 
     FILE *output_file;
-    errno_t output_err = fopen_s(&output_file, output_path.toStdString().c_str().toStdString().c_str(), "wb");
+    errno_t output_err = fopen_s(&output_file, output_path.toStdString().c_str(), "wb");
     if (output_err != 0)
     {
         emit this->extract_finished();
