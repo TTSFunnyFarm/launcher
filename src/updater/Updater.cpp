@@ -170,7 +170,7 @@ bool Updater::update()
 
 void Updater::download_file(const QString &relative_path)
 {
-	m_download_file = new QFile(relative_path);
+    m_download_file = new QFile(relative_path);
     if (!m_download_file->open(QIODevice::WriteOnly))
     {
         delete m_download_file;
