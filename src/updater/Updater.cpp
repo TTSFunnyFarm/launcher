@@ -86,7 +86,7 @@ void Updater::parse_manifest_data(const QByteArray &data)
         QStringList filenames = files.keys();
         for (auto filename : filenames)
         {
-            QDir directory(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
+            QDir directory = QDir::current();
 
             QString hash = files[filename].toObject()["hash"].toString();
             QString path = files[filename].toObject()["path"].toString();
@@ -170,10 +170,7 @@ bool Updater::update()
 
 void Updater::download_file(const QString &relative_path)
 {
-    QString relative = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-    relative.append("/" + relative_path);
-
-    m_download_file = new QFile(relative);
+	m_download_file = new QFile(relative_path);
     if (!m_download_file->open(QIODevice::WriteOnly))
     {
         delete m_download_file;
@@ -285,20 +282,14 @@ void Updater::downloadProgress(qint64 bytes_read, qint64 bytes_total)
 
 void Updater::extract_file(const QString &archive_path, const QString &output_path)
 {
-    QString archive = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-    archive.append("/" + archive_path);
-
-    QString output = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-    output.append("/" + output_path);
-
     FILE *f;
-    errno_t err = fopen_s(&f, archive.toStdString().c_str(), "rb");
+    errno_t err = fopen_s(&f, archive_path.toStdString().c_str(), "rb");
     if (err != 0)
     {
         emit this->extract_finished();
         try
         {
-            QString file_name = QFileInfo(archive).fileName();
+            QString file_name = QFileInfo(archive_path).fileName();
             throw DownloadError(ERROR_CODE_READ, ERROR_READ.arg(file_name));
         }
         catch (DownloadError &e)
@@ -314,7 +305,7 @@ void Updater::extract_file(const QString &archive_path, const QString &output_pa
         emit this->extract_finished();
         try
         {
-            QString file_name = QFileInfo(archive).fileName();
+            QString file_name = QFileInfo(archive_path).fileName();
             throw DownloadError(ERROR_CODE_EXTRACT, ERROR_EXTRACT.arg(file_name));
         }
         catch (DownloadError &e)
@@ -324,13 +315,13 @@ void Updater::extract_file(const QString &archive_path, const QString &output_pa
     }
 
     FILE *output_file;
-    errno_t output_err = fopen_s(&output_file, output.toStdString().c_str(), "wb");
+    errno_t output_err = fopen_s(&output_file, output_path.toStdString().c_str().toStdString().c_str(), "wb");
     if (output_err != 0)
     {
         emit this->extract_finished();
         try
         {
-            QString file_name = QFileInfo(output).fileName();
+            QString file_name = QFileInfo(output_path.toStdString().c_str()).fileName();
             throw DownloadError(ERROR_CODE_WRITE, ERROR_WRITE.arg(file_name));
         }
         catch (DownloadError &e)
@@ -351,7 +342,7 @@ void Updater::extract_file(const QString &archive_path, const QString &output_pa
                 emit this->extract_finished();
                 try
                 {
-                    QString file_name = QFileInfo(archive).fileName();
+                    QString file_name = QFileInfo(archive_path).fileName();
                     throw DownloadError(ERROR_CODE_EXTRACT, ERROR_EXTRACT.arg(file_name));
                 }
                 catch (DownloadError &e)
@@ -367,7 +358,7 @@ void Updater::extract_file(const QString &archive_path, const QString &output_pa
         emit this->extract_finished();
         try
         {
-            QString file_name = QFileInfo(archive).fileName();
+            QString file_name = QFileInfo(archive_path).fileName();
             throw DownloadError(ERROR_CODE_EXTRACT, ERROR_EXTRACT.arg(file_name));
         }
         catch (DownloadError &e)
@@ -379,7 +370,7 @@ void Updater::extract_file(const QString &archive_path, const QString &output_pa
     BZ2_bzReadClose(&bzerror, archive_file);
     fclose(f);
     fclose(output_file);
-    QFile::remove(archive);
+    QFile::remove(archive_path);
 
     emit this->extract_finished();
 }
