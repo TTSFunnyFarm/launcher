@@ -18,6 +18,10 @@ FramelessWindow::FramelessWindow(QWidget *parent) :
     QMainWindow(parent),
     m_titlebar(Q_NULLPTR)
 {
+}
+
+void FramelessWindow::setupUi()
+{
     Qt::WindowFlags winFlags = windowFlags();
     winFlags = winFlags | Qt::Window | Qt::FramelessWindowHint | Qt::WindowSystemMenuHint;
     winFlags = winFlags & ~Qt::WindowMaximizeButtonHint;

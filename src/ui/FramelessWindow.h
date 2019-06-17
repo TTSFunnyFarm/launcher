@@ -124,6 +124,8 @@ class FramelessWindow : public QMainWindow
 public:
     explicit FramelessWindow(QWidget *parent = nullptr);
 
+    void setupUi();
+
 protected:
     // Sets a widget that will be treated as the system titlebar.
     void setTitleBar(QWidget* titlebar);
