@@ -31,4 +31,7 @@
         <file>assets/frame_toon_news.png</file>
         <file>assets/frame_update.png</file>
     </qresource>
+    <qresource prefix="/ttf">
+        <file>assets/Impress.ttf</file>
+    </qresource>
 </RCC>

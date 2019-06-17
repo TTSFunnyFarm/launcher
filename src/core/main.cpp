@@ -1,6 +1,7 @@
 #include "src/ui/LauncherWindow.h"
 
 #include <QApplication>
+#include <QFontDatabase>
 
 int main(int argc, char *argv[])
 {
@@ -9,6 +10,8 @@ int main(int argc, char *argv[])
 #endif
 
     QApplication a(argc, argv);
+
+    QFontDatabase::addApplicationFont(":/ttf/assets/Impress.ttf");
 
     LauncherWindow w;
     w.show();
