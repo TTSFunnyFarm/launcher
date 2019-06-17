@@ -168,6 +168,42 @@ QPushButton#push_button_close:pressed {
      <string/>
     </property>
    </widget>
+   <widget class="QWidget" name="frame_update" native="true">
+    <property name="geometry">
+     <rect>
+      <x>26</x>
+      <y>417</y>
+      <width>405</width>
+      <height>75</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>405</width>
+      <height>75</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>405</width>
+      <height>75</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget#frame_update {
+    background-image: url(:/png/assets/frame_update.png);
+}</string>
+    </property>
+    <property name="text" stdset="0">
+     <string/>
+    </property>
+   </widget>
    <widget class="QPushButton" name="push_button_play">
     <property name="geometry">
      <rect>
