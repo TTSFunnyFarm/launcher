@@ -207,5 +207,24 @@ bool LauncherWindow::update_game()
 
 void LauncherWindow::launch_game()
 {
-    // TODO
+#ifdef Q_OS_WIN
+    // Start the game:
+    QProcess process;
+    process.start("funnyfarm.exe");
+
+    // Hide launcher and wait for application to finish:
+    hide();
+    process.waitForFinished(-1);
+
+    // Enable the play & settings buttons:
+    ui->push_button_play->setEnabled(true);
+    ui->push_button_settings->setEnabled(true);
+
+    // Show play button, hide update frame:
+    ui->push_button_play->setVisible(true);
+    ui->frame_update->setVisible(false);
+
+    // Show the launcher:
+    show();
+#endif
 }
