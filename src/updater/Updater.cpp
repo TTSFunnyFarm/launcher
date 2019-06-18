@@ -10,7 +10,9 @@ Updater::Updater(QUrl url) :
     m_launcher_version(""),
     m_game_version(""),
     m_update_file_number(0),
-    m_update_file_total(0)
+    m_update_file_total(0),
+    m_download_file(nullptr),
+    m_download_reply(nullptr)
 {
 }
 
