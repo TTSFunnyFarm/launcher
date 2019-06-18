@@ -62,22 +62,15 @@ macx {
         BUILD_DIR = $$OUT_PWD/release
     }
 
-    INCLUDEPATH += \
-        $$PWD/dependencies/openssl/include
-
     contains(QT_ARCH, i386) {
         LIBS += \
-            $$PWD/dependencies/bzip2/Win32/lib/libbz2.lib \
-            $$PWD/dependencies/openssl/Win32/lib/libeay32.lib \
-            $$PWD/dependencies/openssl/Win32/lib/ssleay32.lib
+            $$PWD/dependencies/bzip2/Win32/lib/libbz2.lib
 
         copydata.commands = \
             $(COPY_DIR) $$shell_path($$PWD/dependencies/openssl/Win32/bin) $$shell_path($$BUILD_DIR)
     } else {
         LIBS += \
-            $$PWD/dependencies/bzip2/Win64/lib/libbz2.lib \
-            $$PWD/dependencies/openssl/Win64/lib/libeay32.lib \
-            $$PWD/dependencies/openssl/Win64/lib/ssleay32.lib
+            $$PWD/dependencies/bzip2/Win64/lib/libbz2.lib
 
         copydata.commands = \
             $(COPY_DIR) $$shell_path($$PWD/dependencies/openssl/Win64/bin) $$shell_path($$BUILD_DIR)
