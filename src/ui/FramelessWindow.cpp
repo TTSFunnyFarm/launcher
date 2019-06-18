@@ -43,6 +43,16 @@ void FramelessWindow::setupUi()
     DwmExtendFrameIntoClientArea(HWND(winId()), &shadow);
 
     setVisible(visible);
+
+    // The following code will fix the window size. Windows for some reason seems to
+    // add an extra pixel of height to the window size, resulting in a subtle white
+    // bar present at the bottom of the window. This works around that bug and in the
+    // end results in the proper window size.
+    int winHeight = size().height();
+    winHeight -= 2;
+    setFixedHeight(winHeight);
+    winHeight += 1;
+    setFixedHeight(winHeight);
 }
 
 void FramelessWindow::setTitleBar(QWidget* titlebar)
