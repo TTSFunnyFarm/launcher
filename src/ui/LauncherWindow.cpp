@@ -127,6 +127,17 @@ void LauncherWindow::scale_font(QLabel *label)
     label->setFont(label_font);
 }
 
+void LauncherWindow::gotoMainUi()
+{
+    // Enable the play & settings buttons:
+    ui->push_button_play->setEnabled(true);
+    ui->push_button_settings->setEnabled(true);
+
+    // Show play button, hide update frame:
+    ui->push_button_play->setVisible(true);
+    ui->frame_update->setVisible(false);
+}
+
 void LauncherWindow::on_push_button_close_clicked()
 {
     close();
@@ -148,13 +159,8 @@ void LauncherWindow::on_push_button_play_clicked()
     {
         // The update failed, so go back to the main UI state:
 
-        // Enable the play & settings buttons:
-        ui->push_button_play->setEnabled(true);
-        ui->push_button_settings->setEnabled(true);
-
-        // Show play button, hide update frame:
-        ui->push_button_play->setVisible(true);
-        ui->frame_update->setVisible(false);
+        // Go to the main UI:
+        gotoMainUi();
 
         // We're done!
         return;
@@ -216,13 +222,8 @@ void LauncherWindow::launch_game()
     hide();
     process.waitForFinished(-1);
 
-    // Enable the play & settings buttons:
-    ui->push_button_play->setEnabled(true);
-    ui->push_button_settings->setEnabled(true);
-
-    // Show play button, hide update frame:
-    ui->push_button_play->setVisible(true);
-    ui->frame_update->setVisible(false);
+    // Go to the main UI:
+    gotoMainUi();
 
     // Show the launcher:
     show();

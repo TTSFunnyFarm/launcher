@@ -40,6 +40,7 @@ private:
     void setup_fonts();
     void scale_fonts();
     void scale_font(QLabel *label);
+    void gotoMainUi();
 
     float m_scale;
 };
