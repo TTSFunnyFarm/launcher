@@ -32,6 +32,7 @@ LauncherWindow::LauncherWindow(QWidget *parent) :
 
     // Update frame not visible by default:
     ui->frame_update->setVisible(false);
+    ui->progress_bar_update->setVisible(false);
 
 #ifdef Q_OS_WIN
     setupUi();
@@ -127,7 +128,7 @@ void LauncherWindow::scale_font(QLabel *label)
     label->setFont(label_font);
 }
 
-void LauncherWindow::gotoMainUi()
+void LauncherWindow::goto_main_ui()
 {
     // Enable the play & settings buttons:
     ui->push_button_play->setEnabled(true);
@@ -136,6 +137,7 @@ void LauncherWindow::gotoMainUi()
     // Show play button, hide update frame:
     ui->push_button_play->setVisible(true);
     ui->frame_update->setVisible(false);
+    ui->progress_bar_update->setVisible(false);
 }
 
 void LauncherWindow::on_push_button_close_clicked()
@@ -154,13 +156,16 @@ void LauncherWindow::on_push_button_play_clicked()
     ui->push_button_play->setEnabled(false);
     ui->push_button_settings->setEnabled(false);
 
+    // Get up to date with the manifest:
+    update_manifest();
+
     // Attempt to update the game:
     if (!update_game())
     {
         // The update failed, so go back to the main UI state:
 
         // Go to the main UI:
-        gotoMainUi();
+        goto_main_ui();
 
         // We're done!
         return;
@@ -192,7 +197,8 @@ void LauncherWindow::download_error(int error_code, const QString &error_string)
 
 void LauncherWindow::download_progress(qint64 bytes_read, qint64 bytes_total, const QString &status)
 {
-    // TODO
+    ui->progress_bar_update->setMaximum(static_cast<int>(bytes_total));
+    ui->progress_bar_update->setValue(static_cast<int>(bytes_read));
 }
 
 bool LauncherWindow::update_game()
@@ -206,6 +212,7 @@ bool LauncherWindow::update_game()
     // Hide play button, show update frame:
     ui->push_button_play->setVisible(false);
     ui->frame_update->setVisible(true);
+    ui->progress_bar_update->setVisible(true);
 
     // Begin downloading the updated files:
     return updater->update();
@@ -223,7 +230,7 @@ void LauncherWindow::launch_game()
     process.waitForFinished(-1);
 
     // Go to the main UI:
-    gotoMainUi();
+    goto_main_ui();
 
     // Show the launcher:
     show();
