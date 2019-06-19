@@ -369,21 +369,21 @@ QPushButton#push_button_close:pressed {
     <property name="geometry">
      <rect>
       <x>48</x>
-      <y>460</y>
+      <y>462</y>
       <width>365</width>
-      <height>10</height>
+      <height>8</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
       <width>365</width>
-      <height>10</height>
+      <height>8</height>
      </size>
     </property>
     <property name="maximumSize">
      <size>
       <width>365</width>
-      <height>10</height>
+      <height>8</height>
      </size>
     </property>
     <property name="value">
