@@ -12,7 +12,7 @@ const QString ERROR_EXTRACT = "Couldn't extract archive: %1";
 const QString GUI_LAUNCHER_VERSION = "Launcher: %1";
 const QString GUI_GAME_VERSION = "Game: %1";
 const QString GUI_NO_VERSION = "Unknown";
-const QString GUI_CHECKING_FOR_UPDATES = "Checking for updates...";
+const QString GUI_CHECKING_FOR_UPDATES = "CHECKING FOR UPDATES...";
 const QString GUI_DOWNLOAD_WAITING = "Updating file %1 of %2...\n[%3/%4%5 @ %6%7]";
 
 #endif // LOCALIZER_H

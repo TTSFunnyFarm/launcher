@@ -111,7 +111,7 @@
 }</string>
     </property>
     <property name="text">
-     <string>Launcher: </string>
+     <string>Launcher Version</string>
     </property>
     <property name="textFormat">
      <enum>Qt::PlainText</enum>
@@ -166,7 +166,7 @@
 }</string>
     </property>
     <property name="text">
-     <string>Game: </string>
+     <string>Game Version</string>
     </property>
     <property name="textFormat">
      <enum>Qt::PlainText</enum>
@@ -312,6 +312,61 @@ QPushButton#push_button_close:pressed {
     </property>
     <property name="text" stdset="0">
      <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_status">
+    <property name="geometry">
+     <rect>
+      <x>48</x>
+      <y>430</y>
+      <width>365</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>365</width>
+      <height>21</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>365</width>
+      <height>21</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>22</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel#label_status {
+    border: none;
+    background: none;
+    color: #eaeaea
+}</string>
+    </property>
+    <property name="text">
+     <string>Status</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::PlainText</enum>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QProgressBar" name="progress_bar_update">

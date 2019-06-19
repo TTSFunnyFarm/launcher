@@ -13,6 +13,7 @@
 #include <QDesktopServices>
 #include <QMessageBox>
 #include <QScreen>
+#include <QGraphicsDropShadowEffect>
 
 LauncherWindow::LauncherWindow(QWidget *parent) :
     FramelessWindow(parent),
@@ -33,6 +34,7 @@ LauncherWindow::LauncherWindow(QWidget *parent) :
     // Update frame not visible by default:
     ui->frame_update->setVisible(false);
     ui->progress_bar_update->setVisible(false);
+    ui->label_status->setVisible(false);
 
 #ifdef Q_OS_WIN
     setupUi();
@@ -99,11 +101,25 @@ void LauncherWindow::update_manifest()
 
 void LauncherWindow::setup_fonts()
 {
+    // Load Impress BT and antialias it if possible:
     QFont impress("Impress BT");
+    impress.setStyleStrategy(QFont::PreferAntialias);
 
+    // Set the launcher & game version label fonts to Impress BT (10pt):
     impress.setPointSize(10);
     ui->label_game_version->setFont(impress);
     ui->label_launcher_version->setFont(impress);
+
+    // Set the status label font to Impress BT (22pt):
+    impress.setPointSize(22);
+    ui->label_status->setFont(impress);
+
+    // Add a nice drop shadow to the status label:
+    QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect(this);
+    effect->setBlurRadius(0);
+    effect->setColor(QColor("#451616"));
+    effect->setOffset(-2.57, 1.5);
+    ui->label_status->setGraphicsEffect(effect);
 }
 
 void LauncherWindow::scale_fonts()
@@ -138,6 +154,7 @@ void LauncherWindow::goto_main_ui()
     ui->push_button_play->setVisible(true);
     ui->frame_update->setVisible(false);
     ui->progress_bar_update->setVisible(false);
+    ui->label_status->setVisible(false);
 }
 
 void LauncherWindow::on_push_button_close_clicked()
@@ -213,6 +230,7 @@ bool LauncherWindow::update_game()
     ui->push_button_play->setVisible(false);
     ui->frame_update->setVisible(true);
     ui->progress_bar_update->setVisible(true);
+    ui->label_status->setVisible(true);
 
     // Begin downloading the updated files:
     return updater->update();
