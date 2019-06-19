@@ -368,6 +368,9 @@ QPushButton#push_button_close:pressed {
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QProgressBar" name="progress_bar_update">
     <property name="geometry">

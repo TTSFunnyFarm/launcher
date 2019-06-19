@@ -340,7 +340,7 @@ QPushButton#push_button_close:pressed {
     <property name="font">
      <font>
       <family>Arial</family>
-      <pointsize>18</pointsize>
+      <pointsize>22</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -356,13 +356,16 @@ QPushButton#push_button_close:pressed {
 }</string>
     </property>
     <property name="text">
-     <string>CHECKING FOR UPDATES...</string>
+     <string>Status</string>
     </property>
     <property name="textFormat">
      <enum>Qt::PlainText</enum>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QProgressBar" name="progress_bar_update">

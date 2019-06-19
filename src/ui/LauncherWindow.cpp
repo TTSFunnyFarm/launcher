@@ -173,6 +173,15 @@ void LauncherWindow::on_push_button_play_clicked()
     ui->push_button_play->setEnabled(false);
     ui->push_button_settings->setEnabled(false);
 
+    // Hide play button, show update frame:
+    ui->push_button_play->setVisible(false);
+    ui->frame_update->setVisible(true);
+    ui->progress_bar_update->setVisible(true);
+    ui->label_status->setVisible(true);
+
+    // Notify the user that we are checking for updates:
+    set_status_text(GUI_CHECKING_FOR_UPDATES, 22);
+
     // Get up to date with the manifest:
     update_manifest();
 
@@ -209,11 +218,12 @@ void LauncherWindow::on_push_button_discord_clicked()
 
 void LauncherWindow::download_error(int error_code, const QString &error_string)
 {
-    // TODO
+    set_status_text(QString::number(error_code) + ": " + error_string);
 }
 
 void LauncherWindow::download_progress(qint64 bytes_read, qint64 bytes_total, const QString &status)
 {
+    set_status_text(status);
     ui->progress_bar_update->setMaximum(static_cast<int>(bytes_total));
     ui->progress_bar_update->setValue(static_cast<int>(bytes_read));
 }
@@ -225,12 +235,6 @@ bool LauncherWindow::update_game()
                      this, SLOT(download_error(int, const QString &)));
     QObject::connect(updater, SIGNAL(download_progress(qint64, qint64, const QString &)),
                      this, SLOT(download_progress(qint64, qint64, const QString &)));
-
-    // Hide play button, show update frame:
-    ui->push_button_play->setVisible(false);
-    ui->frame_update->setVisible(true);
-    ui->progress_bar_update->setVisible(true);
-    ui->label_status->setVisible(true);
 
     // Begin downloading the updated files:
     return updater->update();
@@ -253,4 +257,40 @@ void LauncherWindow::launch_game()
     // Show the launcher:
     show();
 #endif
+}
+
+void LauncherWindow::set_status_text(const QString &status, int pointSize)
+{
+    QFont font = ui->label_status->font();
+    font.setPointSize(22);
+
+    if (pointSize > 0)
+    {
+        if (font.pointSize() != pointSize)
+        {
+            font.setPointSize(pointSize);
+        }
+    }
+    else
+    {
+        bool textFits = false;
+        while (!textFits)
+        {
+            QFontMetrics fontMetrics(font);
+            QRect boundingRect = fontMetrics.boundingRect(0, 0, ui->label_status->width(), ui->label_status->height(),
+                                                          Qt::TextWordWrap | Qt::AlignCenter, status);
+
+            if (boundingRect.width() <= ui->label_status->width() && boundingRect.height() <= ui->label_status->height())
+            {
+                textFits = true;
+            }
+            else
+            {
+                font.setPointSize(font.pointSize() - 1);
+            }
+        }
+    }
+
+    ui->label_status->setFont(font);
+    ui->label_status->setText(status);
 }

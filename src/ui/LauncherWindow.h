@@ -41,6 +41,7 @@ private:
     void scale_fonts();
     void scale_font(QLabel *label);
     void goto_main_ui();
+    void set_status_text(const QString &status, int pointSize = 0);
 
     float m_scale;
 };
