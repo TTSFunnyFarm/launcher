@@ -253,33 +253,11 @@ void Updater::downloadProgress(qint64 bytes_read, qint64 bytes_total)
     read = floor((read * 10.0) + 0.5) / 10.0;
     total = floor((total * 10.0) + 0.5) / 10.0;
 
-    // Calculate the download speed:
-    double speed = (bytes_read * 1000.0) / m_download_time.elapsed();
-
-    // Choose the speed unit:
-    QString speed_unit = "B/s";
-    if (speed >= 1024)
-    {
-        if (speed < (1024 * 1024))
-        {
-            speed /= 1024;
-            speed_unit = "kB/s";
-        }
-        else
-        {
-            speed /= 1024 * 1024;
-            speed_unit = "MB/s";
-        }
-    }
-
-    // Round the value to the nearest tenth:
-    speed = floor((speed * 10.0) + 0.5) / 10.0;
-
     emit this->download_progress(bytes_read, bytes_total,
         GUI_DOWNLOAD_WAITING.arg(
             QString::number(m_update_file_number),
             QString::number(m_update_file_total), QString::number(read),
-            QString::number(total), unit, QString::number(speed), speed_unit));
+            QString::number(total), unit));
 }
 
 void Updater::extract_file(const QString &archive_path, const QString &output_path)
