@@ -317,22 +317,22 @@ QPushButton#push_button_close:pressed {
    <widget class="QProgressBar" name="progress_bar_update">
     <property name="geometry">
      <rect>
-      <x>45</x>
-      <y>450</y>
-      <width>371</width>
-      <height>23</height>
+      <x>48</x>
+      <y>460</y>
+      <width>365</width>
+      <height>10</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
-      <width>371</width>
-      <height>23</height>
+      <width>365</width>
+      <height>10</height>
      </size>
     </property>
     <property name="maximumSize">
      <size>
-      <width>371</width>
-      <height>23</height>
+      <width>365</width>
+      <height>10</height>
      </size>
     </property>
     <property name="value">
@@ -340,6 +340,18 @@ QPushButton#push_button_close:pressed {
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QProgressBar#progress_bar_update {
+    border: 1px solid transparent;
+    background: none;
+    background-color: rgb(67, 23, 23);
+}
+
+QProgressBar::chunk#progress_bar_update {
+    border: 1px solid transparent;
+    background-color: rgb(91, 179, 69);
+}</string>
     </property>
     <property name="textVisible">
      <bool>false</bool>
