@@ -320,7 +320,7 @@ QPushButton#push_button_close:pressed {
       <x>48</x>
       <y>430</y>
       <width>365</width>
-      <height>21</height>
+      <height>26</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -332,13 +332,13 @@ QPushButton#push_button_close:pressed {
     <property name="minimumSize">
      <size>
       <width>365</width>
-      <height>21</height>
+      <height>26</height>
      </size>
     </property>
     <property name="maximumSize">
      <size>
       <width>365</width>
-      <height>21</height>
+      <height>26</height>
      </size>
     </property>
     <property name="font">
