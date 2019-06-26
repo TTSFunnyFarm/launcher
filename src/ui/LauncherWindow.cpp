@@ -46,6 +46,7 @@ LauncherWindow::LauncherWindow(QWidget *parent) :
     setCloseBtnHidden(true);
     setMinBtnHidden(true);
     setZoomBtnHidden(true);
+    setResizable(false);
 #endif
 }
 

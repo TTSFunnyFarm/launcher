@@ -73,6 +73,11 @@ public:
     bool isMinBtnHidden() {return m_bIsMinBtnHidden;}
     bool isZoomBtnHidden() {return m_bIsZoomBtnHidden;}
 
+    // Sets resizable flag on the window.
+    void setResizable(bool bResizable = false);
+
+    bool isResizable() {return m_bIsResizable;}
+
 protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
@@ -92,6 +97,7 @@ private:
     bool m_bIsCloseBtnHidden;
     bool m_bIsMinBtnHidden;
     bool m_bIsZoomBtnHidden;
+    bool m_bIsResizable;
 
 private:
     bool m_bTitleBarVisible;

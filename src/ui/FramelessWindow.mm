@@ -17,6 +17,7 @@ FramelessWindow::FramelessWindow(QWidget *parent) :
     m_bIsCloseBtnHidden(false),
     m_bIsMinBtnHidden(false),
     m_bIsZoomBtnHidden(false),
+    m_bIsResizable(false),
     m_bTitleBarVisible(false)
 {
     initUI();
@@ -98,8 +99,7 @@ void FramelessWindow::initUI()
 
     window.titleVisibility = NSWindowTitleHidden;
     window.titlebarAppearsTransparent = YES;
-    window.movableByWindowBackground = YES;
-    [window setMovable:YES];
+    [window setMovable:NO];
     window.styleMask |= NSWindowStyleMaskFullSizeContentView;
 
     m_bNativeSystemBtn = true;
@@ -315,6 +315,31 @@ void FramelessWindow::setZoomBtnHidden(bool bHidden)
     else
     {
         [[window standardWindowButton:NSWindowZoomButton] setHidden:NO];
+    }
+}
+
+void FramelessWindow::setResizable(bool bResizable)
+{
+    NSView* view = reinterpret_cast<NSView*>(winId());
+    if (view == nullptr)
+    {
+        return;
+    }
+
+    NSWindow *window = view.window;
+    if (window == nullptr)
+    {
+        return;
+    }
+
+    m_bIsResizable = bResizable;
+    if (bResizable)
+    {
+        [window setStyleMask:window.styleMask | NSWindowStyleMaskResizable];
+    }
+    else
+    {
+        [window setStyleMask:window.styleMask ^ NSWindowStyleMaskResizable];
     }
 }
 
