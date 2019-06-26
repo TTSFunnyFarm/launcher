@@ -10,7 +10,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 QT += network concurrent
 
-TARGET = FFLauncher
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -42,6 +41,8 @@ HEADERS += \
     src/updater/Updater.h
 
 macx {
+    TARGET = "Funny Farm Launcher"
+
     # Only include / compile these files on macOS:
     OBJECTIVE_SOURCES += \
         src/ui/FramelessWindow.mm
@@ -56,7 +57,12 @@ macx {
 
     RESOURCES += \
         resources-macx.qrc
+
+    ICON = \
+        assets/icon.icns
 } win32 {
+    TARGET = FFLauncher
+
     CONFIG(debug, debug|release) {
         BUILD_DIR = $$OUT_PWD/debug
     } else {
