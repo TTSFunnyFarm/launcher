@@ -266,7 +266,7 @@ void Updater::extract_file(const QString &archive_path, const QString &output_pa
     FILE *f;
     errno_t err = fopen_s(&f, archive_path.toStdString().c_str(), "rb");
     if (err != 0)
-#elif defined(Q_OS_MAC)
+#else
     FILE *f = fopen(archive_path.toStdString().c_str(), "rb");
     if (f == nullptr)
 #endif
@@ -303,7 +303,7 @@ void Updater::extract_file(const QString &archive_path, const QString &output_pa
     FILE *output_file;
     errno_t output_err = fopen_s(&output_file, output_path.toStdString().c_str(), "wb");
     if (output_err != 0)
-#elif defined(Q_OS_MAC)
+#else
     FILE *output_file = fopen(output_path.toStdString().c_str(), "wb");
     if (output_file == nullptr)
 #endif
