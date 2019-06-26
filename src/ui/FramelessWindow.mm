@@ -98,7 +98,8 @@ void FramelessWindow::initUI()
 
     window.titleVisibility = NSWindowTitleHidden;
     window.titlebarAppearsTransparent = YES;
-    [window setMovable:NO];
+    window.movableByWindowBackground = YES;
+    [window setMovable:YES];
     window.styleMask |= NSWindowStyleMaskFullSizeContentView;
 
     m_bNativeSystemBtn = true;
