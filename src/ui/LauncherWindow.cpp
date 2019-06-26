@@ -294,4 +294,5 @@ void LauncherWindow::set_status_text(const QString &status, int pointSize)
 
     ui->label_status->setFont(font);
     ui->label_status->setText(status);
+    scale_font(ui->label_status);
 }
