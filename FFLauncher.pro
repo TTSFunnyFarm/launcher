@@ -48,7 +48,8 @@ macx {
 
     # Include Cocoa for macOS code:
     LIBS += \
-        -framework Cocoa
+        -framework Cocoa \
+        $$PWD/dependencies/bzip2/macOS/lib/libbz2.a
 
     FORMS += \
         FFLauncher-macx.ui
