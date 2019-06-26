@@ -131,8 +131,9 @@ void LauncherWindow::scale_fonts()
     m_scale = (dpi > 0.0) ? (96.0f / static_cast<float>(dpi)) : 1.0;
 
     // Apply scale to all affected text labels:
+    scale_font(ui->label_game_version);
     scale_font(ui->label_launcher_version);
-    scale_font(ui->label_launcher_version);
+    scale_font(ui->label_status);
 }
 
 void LauncherWindow::scale_font(QLabel *label)
