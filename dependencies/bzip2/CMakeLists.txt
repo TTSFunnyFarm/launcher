@@ -1,6 +1,12 @@
-project(libbz2)
+if (WIN32)
+    project(libbz2)
+else()
+    project(bz2)
+endif()
 
-add_library(libbz2 STATIC
+include_directories(include)
+
+add_library(${CMAKE_PROJECT_NAME} STATIC
     src/blocksort.c
     src/bzlib.c
     src/compress.c
