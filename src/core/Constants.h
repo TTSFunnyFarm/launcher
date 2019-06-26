@@ -9,7 +9,7 @@ const QString MANIFEST_FILENAME = "manifest.json";
 
 #ifdef Q_OS_WIN
 const QString URL_DOWNLOAD_MIRROR = "https://cdn.toontownsfunnyfarm.com/windows/";
-#elif Q_OS_MAC
+#elif defined(Q_OS_MAC)
 const QString URL_DOWNLOAD_MIRROR = "https://cdn.toontownsfunnyfarm.com/mac/";
 #else
 const QString URL_DOWNLOAD_MIRROR = "https://cdn.toontownsfunnyfarm.com/linux/";

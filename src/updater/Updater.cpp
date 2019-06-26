@@ -262,9 +262,14 @@ void Updater::downloadProgress(qint64 bytes_read, qint64 bytes_total)
 
 void Updater::extract_file(const QString &archive_path, const QString &output_path)
 {
+#ifdef Q_OS_WIN
     FILE *f;
     errno_t err = fopen_s(&f, archive_path.toStdString().c_str(), "rb");
     if (err != 0)
+#elif defined(Q_OS_MAC)
+    FILE *f = fopen(archive_path.toStdString().c_str(), "rb");
+    if (f == nullptr)
+#endif
     {
         emit this->extract_finished();
         try
@@ -294,9 +299,14 @@ void Updater::extract_file(const QString &archive_path, const QString &output_pa
         }
     }
 
+#ifdef Q_OS_WIN
     FILE *output_file;
     errno_t output_err = fopen_s(&output_file, output_path.toStdString().c_str(), "wb");
     if (output_err != 0)
+#elif defined(Q_OS_MAC)
+    FILE *output_file = fopen(output_path.toStdString().c_str(), "wb");
+    if (output_file == nullptr)
+#endif
     {
         emit this->extract_finished();
         try
