@@ -1,3 +1,9 @@
+cmake_minimum_required(VERSION 3.14)
+
+if (APPLE)
+    set(CMAKE_OSX_DEPLOYMENT_TARGET "10.12" CACHE STRING "Minimum OS X deployment version")
+endif()
+
 if (WIN32)
     project(libbz2)
 else()
