@@ -13,6 +13,7 @@
 #include <QDesktopServices>
 #include <QMessageBox>
 #include <QScreen>
+#include <QStyle>
 #include <QGraphicsDropShadowEffect>
 
 LauncherWindow::LauncherWindow(QWidget *parent) :
@@ -47,6 +48,10 @@ LauncherWindow::LauncherWindow(QWidget *parent) :
     setMinBtnHidden(true);
     setZoomBtnHidden(true);
     setResizable(false);
+
+    // Center on the screen:
+    QScreen *scrn = QApplication::screens().at(0);
+    setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, size(), scrn->geometry()));
 #endif
 }
 
