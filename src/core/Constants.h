@@ -17,7 +17,7 @@ const QString URL_DOWNLOAD_MIRROR = "https://cdn.toontownsfunnyfarm.com/linux/";
 
 const QString URL_PLAY = "https://www.toontownsfunnyfarm.com/";  // TODO: Update this to download page?
 const QString URL_WEBSITE = "https://www.toontownsfunnyfarm.com/";
-const QString URL_DISCORD = "https://discord.gg/BFC7agB";
+const QString URL_DISCORD = "https://discord.gg/toontownsfunnyfarm";
 
 const int ERROR_CODE_WRITE = 902;
 const int ERROR_CODE_READ = 903;
