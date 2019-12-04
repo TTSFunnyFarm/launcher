@@ -158,7 +158,7 @@ void LauncherWindow::goto_main_ui()
 {
     // Enable the play & settings buttons:
     ui->push_button_play->setEnabled(true);
-    ui->push_button_settings->setEnabled(true);
+    //ui->push_button_settings->setEnabled(true);  // TEMP
 
     // Show play button, hide update frame:
     ui->push_button_play->setVisible(true);
@@ -181,7 +181,7 @@ void LauncherWindow::on_push_button_play_clicked()
 {
     // Disable the play & settings buttons:
     ui->push_button_play->setEnabled(false);
-    ui->push_button_settings->setEnabled(false);
+    //ui->push_button_settings->setEnabled(false);  // TEMP
 
     // Hide play button, show update frame:
     ui->push_button_play->setVisible(false);
