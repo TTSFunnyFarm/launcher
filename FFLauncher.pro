@@ -107,6 +107,12 @@ macx {
         copydata
 }
 
+VERSION = 2.0.0.0
+QMAKE_TARGET_COMPANY = "Toontown's Funny Farm"
+QMAKE_TARGET_PRODUCT = "Funny Farm Launcher"
+QMAKE_TARGET_DESCRIPTION = "Funny Farm Launcher"
+QMAKE_TARGET_COPYRIGHT = "Copyright (C) 2019 Toontown's Funny Farm"
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
