@@ -258,7 +258,7 @@ void LauncherWindow::launch_game()
 {
 #ifdef Q_OS_WIN
     // Set our working directory to the game location:
-    QDir::setCurrent(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
+    QDir::setCurrent(updater->get_directory());
 
     // Start the game:
     QProcess process;

@@ -14,6 +14,13 @@ Updater::Updater(QUrl url) :
     m_download_file(nullptr),
     m_download_reply(nullptr)
 {
+#if defined(Q_OS_WIN) && defined(Q_PROCESSOR_X86_32)
+    m_directory = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/win32";
+#elif defined(Q_OS_WIN) && defined(Q_PROCESSOR_X86_64)
+    m_directory = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/win64";
+#else
+    m_directory = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)
+#endif
 }
 
 Updater::~Updater()
@@ -40,6 +47,11 @@ QString Updater::get_launcher_version()
 QString Updater::get_game_version()
 {
     return m_game_version;
+}
+
+QString Updater::get_directory()
+{
+    return m_directory;
 }
 
 void Updater::update_manifest(const QString &filename)
@@ -88,7 +100,7 @@ void Updater::parse_manifest_data(const QByteArray &data)
         QStringList filenames = files.keys();
         for (auto filename : filenames)
         {
-            QDir directory(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
+            QDir directory(m_directory);
 
             QString hash = files[filename].toObject()["hash"].toString();
             QString path = files[filename].toObject()["path"].toString();
@@ -172,7 +184,7 @@ bool Updater::update()
 
 void Updater::download_file(const QString &relative_path)
 {
-    QString relative = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+    QString relative = m_directory;
     relative.append("/" + relative_path);
 
     m_download_file = new QFile(relative);
@@ -265,10 +277,10 @@ void Updater::downloadProgress(qint64 bytes_read, qint64 bytes_total)
 
 void Updater::extract_file(const QString &archive_path, const QString &output_path)
 {
-    QString archive = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+    QString archive = m_directory;
     archive.append("/" + archive_path);
 
-    QString output = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+    QString output = m_directory;
     output.append("/" + output_path);
 
 #ifdef Q_OS_WIN

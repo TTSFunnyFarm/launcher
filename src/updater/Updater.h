@@ -72,6 +72,7 @@ public:
 
     QString get_launcher_version();
     QString get_game_version();
+    QString get_directory();
 
     void update_manifest(const QString &filename = MANIFEST_FILENAME);
     void parse_manifest_data(const QByteArray &data);
@@ -88,6 +89,8 @@ private slots:
     void downloadProgress(qint64 bytes_read, qint64 bytes_total);
 
 private:
+    QString m_directory;
+
     QUrl m_url;
 
     QString m_launcher_version;
