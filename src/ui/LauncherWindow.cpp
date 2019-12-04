@@ -253,6 +253,9 @@ bool LauncherWindow::update_game()
 void LauncherWindow::launch_game()
 {
 #ifdef Q_OS_WIN
+    // Set our working directory to the game location:
+    QDir::setCurrent(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
+
     // Start the game:
     QProcess process;
     process.start("funnyfarm.exe");
