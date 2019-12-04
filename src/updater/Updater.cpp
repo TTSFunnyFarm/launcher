@@ -320,7 +320,7 @@ void Updater::extract_file(const QString &archive_path, const QString &output_pa
         emit this->extract_finished();
         try
         {
-            QString file_name = QFileInfo(output.toStdString().c_str()).fileName();
+            QString file_name = QFileInfo(output).fileName();
             throw DownloadError(ERROR_CODE_WRITE, ERROR_WRITE.arg(file_name));
         }
         catch (DownloadError &e)
