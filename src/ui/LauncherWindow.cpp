@@ -165,6 +165,10 @@ void LauncherWindow::goto_main_ui()
     ui->frame_update->setVisible(false);
     ui->progress_bar_update->setVisible(false);
     ui->label_status->setVisible(false);
+
+    // Reset progress bar values:
+    ui->progress_bar_update->setMaximum(100);
+    ui->progress_bar_update->setValue(0);
 }
 
 void LauncherWindow::on_push_button_close_clicked()
