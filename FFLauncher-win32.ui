@@ -32,7 +32,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Toontown's Funny Farm Launcher</string>
+   <string>Funny Farm Launcher</string>
   </property>
   <property name="windowIcon">
    <iconset resource="resources-win32.qrc">
