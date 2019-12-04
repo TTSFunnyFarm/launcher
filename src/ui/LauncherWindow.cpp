@@ -37,6 +37,9 @@ LauncherWindow::LauncherWindow(QWidget *parent) :
     ui->progress_bar_update->setVisible(false);
     ui->label_status->setVisible(false);
 
+    // TEMP: Disable settings button:
+    ui->push_button_settings->setEnabled(false);
+
 #ifdef Q_OS_WIN
     setupUi();
     setTitleBar(ui->launcher_window);
