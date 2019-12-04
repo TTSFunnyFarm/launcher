@@ -10,6 +10,7 @@ int main(int argc, char *argv[])
 #endif
 
     QApplication a(argc, argv);
+    a.setApplicationName("Toontown's Funny Farm");
 
     QFontDatabase::addApplicationFont(":/ttf/assets/Impress.ttf");
 
