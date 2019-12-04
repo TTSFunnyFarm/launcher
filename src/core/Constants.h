@@ -7,11 +7,13 @@ const QString VERSION = "2.0.0";
 const QString USER_AGENT = "FF-Launcher/" + VERSION;
 const QString MANIFEST_FILENAME = "manifest.json";
 
-#ifdef Q_OS_WIN
-const QString URL_DOWNLOAD_MIRROR = "https://cdn.toontownsfunnyfarm.com/windows/";
+#if defined(Q_OS_WIN) && defined(Q_PROCESSOR_X86_32)
+const QString URL_DOWNLOAD_MIRROR = "https://cdn.toontownsfunnyfarm.com/win32/";
+#elif defined(Q_OS_WIN) && defined(Q_PROCESSOR_X86_64)
+const QString URL_DOWNLOAD_MIRROR = "https://cdn.toontownsfunnyfarm.com/win64/";
 #elif defined(Q_OS_MAC)
 const QString URL_DOWNLOAD_MIRROR = "https://cdn.toontownsfunnyfarm.com/mac/";
-#else
+#else  // Assume Linux
 const QString URL_DOWNLOAD_MIRROR = "https://cdn.toontownsfunnyfarm.com/linux/";
 #endif
 
