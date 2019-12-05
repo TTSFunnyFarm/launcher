@@ -18,8 +18,8 @@ RequestExecutionLevel admin
 ; Use LZMA compression
 SetCompressor lzma
 
-; MUI 1.67 compatible ------
-!include "MUI.nsh"
+; MUI 2.1 compatible ------
+!include "MUI2.nsh"
 
 ; MUI Settings
 !define MUI_ABORTWARNING
