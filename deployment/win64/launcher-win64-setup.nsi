@@ -58,6 +58,7 @@ ReserveFile "${NSISDIR}\Plugins\x86-ansi\InstallOptions.dll"
 
 Function .onInit
   ${If} ${RunningX64}
+  SetRegView 64
   ${EnableX64FSRedirection}
   ${else}
   MessageBox MB_OK "This application can only run on 64-bit Windows."
@@ -67,7 +68,7 @@ FunctionEnd
 
 Name "${PRODUCT_NAME}"
 OutFile "launcher-win64-setup.exe"
-InstallDir "$PROGRAMFILES\Toontown's Funny Farm"
+InstallDir "$PROGRAMFILES64\Toontown's Funny Farm"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
 ShowUnInstDetails show
