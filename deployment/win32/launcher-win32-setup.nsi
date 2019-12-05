@@ -51,7 +51,7 @@ var ICONS_GROUP
 !insertmacro MUI_LANGUAGE "English"
 
 ; Reserve files
-ReserveFile "${MUI_DOLLAR}{NSISDIR}\Plugins\InstallOptions.dll"
+ReserveFile "${NSISDIR}\Plugins\x86-ansi\InstallOptions.dll"
 
 ; MUI end ------
 
@@ -70,8 +70,8 @@ Section "MainSection" SEC01
   File "launcher-win32\Qt5Network.dll"
   File "launcher-win32\Qt5Gui.dll"
   File "launcher-win32\Qt5Core.dll"
-  File "launcher-win32\libeay32.dll"
-  File "launcher-win32\ssleay32.dll"
+  File "launcher-win32\libcrypto-1_1.dll"
+  File "launcher-win32\libssl-1_1.dll"
   SetOutPath "$INSTDIR\platforms"
   File "launcher-win32\platforms\qwindows.dll"
   SetOutPath "$INSTDIR\styles"
@@ -125,8 +125,8 @@ Section Uninstall
   Delete "$INSTDIR\Qt5Gui.dll"
   Delete "$INSTDIR\Qt5Network.dll"
   Delete "$INSTDIR\Qt5Widgets.dll"
-  Delete "$INSTDIR\libeay32.dll"
-  Delete "$INSTDIR\ssleay32.dll"
+  Delete "$INSTDIR\libcrypto-1_1.dll"
+  Delete "$INSTDIR\libssl-1_1.dll"
   Delete "$INSTDIR\FFLauncher.exe"
 
   Delete "$SMPROGRAMS\$ICONS_GROUP\Uninstall.lnk"
