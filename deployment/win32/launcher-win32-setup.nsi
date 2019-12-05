@@ -51,7 +51,7 @@ var ICONS_GROUP
 !insertmacro MUI_LANGUAGE "English"
 
 ; Reserve files
-!insertmacro MUI_RESERVEFILE_INSTALLOPTIONS
+ReserveFile "${MUI_DOLLAR}{NSISDIR}\Plugins\InstallOptions.dll"
 
 ; MUI end ------
 
