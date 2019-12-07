@@ -24,6 +24,9 @@ SetCompressor lzma
 ; 64-bit support
 !include "x64.nsh"
 
+; For checking Windows version
+!include WinVer.nsh
+
 ; MUI Settings
 !define MUI_ABORTWARNING
 !define MUI_WELCOMEFINISHPAGE_BITMAP "funny-farm-install.bmp"
@@ -56,12 +59,17 @@ ReserveFile "${NSISDIR}\Plugins\x86-ansi\InstallOptions.dll"
 ; MUI end ------
 
 Function .onInit
+  ${IfNot} ${AtLeastWin7}
+    MessageBox MB_OK "This application requires Windows 7 or newer."
+    Abort
+  ${EndIf}
+
   ${If} ${RunningX64}
-  ${DisableX64FSRedirection}
-  SetRegView 64
+    ${DisableX64FSRedirection}
+    SetRegView 64
   ${else}
-  MessageBox MB_OK "This application can only run on 64-bit Windows."
-  Abort
+    MessageBox MB_OK "This application can only run on 64-bit Windows."
+    Abort
   ${EndIf}
 FunctionEnd
 
