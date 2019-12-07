@@ -59,7 +59,7 @@ InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
 ShowUnInstDetails show
 
-Section "Launcher" SEC01
+Section "Toontown's Funny Farm" SEC01
   SectionIn RO
   SetOutPath "$INSTDIR"
   SetOverwrite ifnewer
@@ -74,17 +74,18 @@ Section "Launcher" SEC01
   File "launcher-win32\platforms\qwindows.dll"
   SetOutPath "$INSTDIR\styles"
   File "launcher-win32\styles\qwindowsvistastyle.dll"
-
-; Shortcuts
-  CreateDirectory "$SMPROGRAMS\${PRODUCT_NAME}"
-  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\Toontown's Funny Farm.lnk" "$INSTDIR\FFLauncher.exe"
-  CreateShortCut "$DESKTOP\Toontown's Funny Farm.lnk" "$INSTDIR\FFLauncher.exe"
 SectionEnd
 
-Section -AdditionalIcons
+Section "Start Menu Shortcuts" SEC02
+  CreateDirectory "$SMPROGRAMS\${PRODUCT_NAME}"
+  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\Toontown's Funny Farm.lnk" "$INSTDIR\FFLauncher.exe"
   WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
   CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
   CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\Uninstall.lnk" "$INSTDIR\uninst.exe"
+SectionEnd
+
+Section "Desktop Shortcut" SEC03
+  CreateShortCut "$DESKTOP\Toontown's Funny Farm.lnk" "$INSTDIR\FFLauncher.exe"
 SectionEnd
 
 Section -Post
