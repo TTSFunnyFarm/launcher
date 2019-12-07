@@ -26,6 +26,8 @@ SetCompressor lzma
 
 ; MUI Settings
 !define MUI_ABORTWARNING
+!define MUI_WELCOMEFINISHPAGE_BITMAP "funny-farm-install.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "funny-farm-install.bmp"
 
 ; Welcome page
 !insertmacro MUI_PAGE_WELCOME
