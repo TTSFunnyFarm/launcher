@@ -57,6 +57,7 @@ ReserveFile "${NSISDIR}\Plugins\x86-ansi\InstallOptions.dll"
 
 Function .onInit
   ${If} ${RunningX64}
+  ${DisableX64FSRedirection}
   SetRegView 64
   ${else}
   MessageBox MB_OK "This application can only run on 64-bit Windows."
