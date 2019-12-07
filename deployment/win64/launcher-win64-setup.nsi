@@ -71,7 +71,8 @@ InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
 ShowUnInstDetails show
 
-Section "MainSection" SEC01
+Section "Launcher" SEC01
+  SectionIn RO
   SetOutPath "$INSTDIR"
   SetOverwrite ifnewer
   File "launcher-win64\FFLauncher.exe"
