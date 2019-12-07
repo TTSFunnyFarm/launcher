@@ -25,6 +25,9 @@ SetCompressor lzma
 !define MUI_ABORTWARNING
 !define MUI_WELCOMEFINISHPAGE_BITMAP "funny-farm-install.bmp"
 !define MUI_UNWELCOMEFINISHPAGE_BITMAP "funny-farm-install.bmp"
+!define MUI_HEADERIMAGE
+!define MUI_HEADERIMAGE_BITMAP "header.bmp"
+!define MUI_HEADERIMAGE_RIGHT
 
 ; Welcome page
 !insertmacro MUI_PAGE_WELCOME
