@@ -21,6 +21,9 @@ SetCompressor lzma
 ; MUI 2.1 compatible ------
 !include "MUI2.nsh"
 
+; For checking Windows version
+!include WinVer.nsh
+
 ; MUI Settings
 !define MUI_ABORTWARNING
 !define MUI_WELCOMEFINISHPAGE_BITMAP "funny-farm-install.bmp"
@@ -51,6 +54,13 @@ SetCompressor lzma
 ReserveFile "${NSISDIR}\Plugins\x86-ansi\InstallOptions.dll"
 
 ; MUI end ------
+
+Function .onInit
+  ${IfNot} ${AtLeastWin7}
+    MessageBox MB_OK "This application requires Windows 7 or newer."
+    Abort
+  ${EndIf}
+FunctionEnd
 
 Name "${PRODUCT_NAME}"
 OutFile "launcher-win32-setup.exe"
