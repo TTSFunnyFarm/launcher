@@ -5,7 +5,7 @@
 ; Helper defines
 !define PRODUCT_NAME "Toontown's Funny Farm"
 !define PRODUCT_VERSION "2.0.0"
-!define PRODUCT_PUBLISHER "Toontown's Funny Farm"
+!define PRODUCT_PUBLISHER "The Toontown's Funny Farm Team"
 !define PRODUCT_WEB_SITE "https://www.toontownsfunnyfarm.com/"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\FFLauncher.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
@@ -101,7 +101,7 @@ Section "Start Menu Shortcuts" SEC02
   CreateDirectory "$SMPROGRAMS\${PRODUCT_NAME}"
   CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\Toontown's Funny Farm.lnk" "$INSTDIR\FFLauncher.exe"
   WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
-  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
+  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\Toontown's Funny Farm Official Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
   CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\Uninstall.lnk" "$INSTDIR\uninst.exe"
 SectionEnd
 
@@ -145,7 +145,7 @@ Section Uninstall
   Delete "$INSTDIR\FFLauncher.exe"
 
   Delete "$SMPROGRAMS\${PRODUCT_NAME}\Uninstall.lnk"
-  Delete "$SMPROGRAMS\${PRODUCT_NAME}\Website.lnk"
+  Delete "$SMPROGRAMS\${PRODUCT_NAME}\Toontown's Funny Farm Official Website.lnk"
   Delete "$DESKTOP\Toontown's Funny Farm.lnk"
   Delete "$SMPROGRAMS\${PRODUCT_NAME}\Toontown's Funny Farm.lnk"
 
