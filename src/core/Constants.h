@@ -17,7 +17,7 @@ const QString URL_DOWNLOAD_MIRROR = "https://cdn.toontownsfunnyfarm.com/mac/";
 const QString URL_DOWNLOAD_MIRROR = "https://cdn.toontownsfunnyfarm.com/linux/";
 #endif
 
-const QString URL_PLAY = "https://www.toontownsfunnyfarm.com/";  // TODO: Update this to download page?
+const QString URL_PLAY = "https://www.toontownsfunnyfarm.com/play";
 const QString URL_WEBSITE = "https://www.toontownsfunnyfarm.com/";
 const QString URL_DISCORD = "https://discord.gg/toontownsfunnyfarm";
 
