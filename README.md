@@ -26,9 +26,8 @@ Login to your Qt account when asked to by the installer, or skip this step if yo
 
 Click next, and then install Qt to the root of your drive. This should be the default installation folder Qt presents to you, so don't change it.
 
-On the 'Select Components' screen, expand the list for 'Qt 5.13.2' and ensure that the following is ticked...
+On the 'Select Components' screen, expand the list for 'Qt 5.14.0' and ensure that the following is ticked...
 
-- MSVC 2015 64-bit
 - MSVC 2017 32-bit
 - MSVC 2017 64-bit
 - Qt WebEngine
@@ -39,7 +38,7 @@ On the 'Select Components' screen, expand the list for 'Qt 5.13.2' and ensure th
 
 - Qt Creator 4.9.1 CDB Debugger Support
 
-...and click next. Alternatively, you could just install all of Qt 5.13.2, as well as all of the Developer and Designer Tools, but this tutorial aims to save you space so that you can specifically open the Toontown's Funny Farm launcher developer build.
+...and click next. Alternatively, you could just install all of Qt 5.14.0, as well as all of the Developer and Designer Tools, but this tutorial aims to save you space so that you can specifically open the Toontown's Funny Farm launcher developer build.
 
 Read and agree to the license agreements presented to you, and click next. Leave the start menu folder as 'Qt' and hit install.
 
@@ -49,17 +48,17 @@ Once Qt has downloaded and installed, download the launcher files from this GitH
 
 Once you've pulled the latest origin, open the 'FFLauncher.pro' file in Qt. You should see a screen that says 'Configure Project'.
 
-Hover over the 'Desktop Qt 5.13.2 MSVC2015 64bit' kit and click 'Manage...'. You will then be greeted with a screen listing your installed 'kits'.
+Hover over the 'Desktop Qt 5.14.0 MSVC2017 64bit' kit and click 'Manage...'. You will then be greeted with a screen listing your installed 'kits'.
 
-Click 'Desktop Qt 5.13.2 MSVC2017 64bit' in the kits list and and then change the following...
+Click 'Desktop Qt 5.14.0 MSVC2017 64bit' in the kits list and and then change the following...
 
 ### Compiler
-- C: from "<No compiler>" to "Microsoft Visual C++ Compiler 16.1.28922.388 (amd64)"
-- C++: from "<No compiler>" to "Microsoft Visual C++ Compiler 16.1.28922.388 (amd64)"
+- C: from "<No compiler>" to "Microsoft Visual C++ Compiler 16.4.29613.14 (amd64)"
+- C++: from "<No compiler>" to "Microsoft Visual C++ Compiler 16.4.29613.14 (amd64)"
 
 ...and then click OK to apply the changes.
 
-Once you have done that, untick the 'Desktop Qt 5.13.2 MSVC2015 64bit' kit and then make sure the new kit listed, 'Desktop Qt 5.13.2 MSVC2017 64bit', is ticked.
+Once you have done that, make sure the new kit listed, 'Desktop Qt 5.14.0 MSVC2017 64bit', is ticked.
 
 Finally, click 'Configure project'.
 
