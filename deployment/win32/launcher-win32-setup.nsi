@@ -2,21 +2,13 @@
 ; by John Cote (jwcotejr)
 ; created on 4-Dec-2019
 
-; 64-bit support
-!include "x64.nsh"
-
 ; Helper defines
 !define PRODUCT_NAME "Toontown's Funny Farm"
 !define PRODUCT_VERSION "2.0.0"
 !define PRODUCT_PUBLISHER "The Toontown's Funny Farm Team"
 !define PRODUCT_WEB_SITE "https://www.toontownsfunnyfarm.com/"
-${If} ${RunningX64}
-  !define PRODUCT_DIR_REGKEY "Software\WOW6432Node\Microsoft\Windows\CurrentVersion\App Paths\FFLauncher.exe"
-  !define PRODUCT_UNINST_KEY "Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
-${else}
-  !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\FFLauncher.exe"
-  !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
-${EndIf}
+!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\FFLauncher.exe"
+!define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 !define PRODUCT_STARTMENU_REGVAL "NSIS:StartMenuDir"
 
@@ -28,6 +20,9 @@ SetCompressor lzma
 
 ; MUI 2.1 compatible ------
 !include "MUI2.nsh"
+
+; 64-bit support
+!include "x64.nsh"
 
 ; For checking Windows version
 !include WinVer.nsh
@@ -71,7 +66,7 @@ Function .onInit
 
   ${If} ${RunningX64}
     ${EnableX64FSRedirection}
-    SetRegView 64
+    SetRegView 32
   ${EndIf}
 FunctionEnd
 
@@ -122,41 +117,22 @@ Section -Post
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
 
-  ${If} ${RunningX64}
-    ; Install Visual C++ Redistributable for Visual Studio 2015-2019 (x86), if needed
-    ReadRegStr $1 HKLM "SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\X86" "Installed"
-    StrCmp $1 1 x86Installed
+  ; Install Visual C++ Redistributable for Visual Studio 2015-2019 (x86), if needed
+  ReadRegStr $1 HKLM "SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\X86" "Installed"
+  StrCmp $1 1 x86Installed
 
-    ExecWait "$INSTDIR\VC_redist.x86.exe /install /passive /norestart"
+  ExecWait "$INSTDIR\VC_redist.x86.exe /install /passive /norestart"
 
-    x86Installed:
+  x86Installed:
 
-    ReadRegStr $1 HKLM "SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\X86" "Version"
-    StrCmp $1 "v14.24.28127.04" x86UpToDate
+  ReadRegStr $1 HKLM "SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\X86" "Version"
+  StrCmp $1 "v14.24.28127.04" x86UpToDate
 
-    ExecWait "$INSTDIR\VC_redist.x86.exe /install /passive /norestart"
+  ExecWait "$INSTDIR\VC_redist.x86.exe /install /passive /norestart"
 
-    x86UpToDate:
+  x86UpToDate:
 
-    Delete "$INSTDIR\VC_redist.x86.exe"
-  ${else}
-    ; Install Visual C++ Redistributable for Visual Studio 2015-2019 (x86), if needed
-    ReadRegStr $1 HKLM "SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\X86" "Installed"
-    StrCmp $1 1 x86Installed
-
-    ExecWait "$INSTDIR\VC_redist.x86.exe /install /passive /norestart"
-
-    x86Installed:
-
-    ReadRegStr $1 HKLM "SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\X86" "Version"
-    StrCmp $1 "v14.24.28127.04" x86UpToDate
-
-    ExecWait "$INSTDIR\VC_redist.x86.exe /install /passive /norestart"
-
-    x86UpToDate:
-
-    Delete "$INSTDIR\VC_redist.x86.exe"
-  ${EndIf}
+  Delete "$INSTDIR\VC_redist.x86.exe"
 SectionEnd
 
 
