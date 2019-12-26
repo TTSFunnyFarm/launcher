@@ -2,13 +2,21 @@
 ; by John Cote (jwcotejr)
 ; created on 4-Dec-2019
 
+; 64-bit support
+!include "x64.nsh"
+
 ; Helper defines
 !define PRODUCT_NAME "Toontown's Funny Farm"
 !define PRODUCT_VERSION "2.0.0"
 !define PRODUCT_PUBLISHER "The Toontown's Funny Farm Team"
 !define PRODUCT_WEB_SITE "https://www.toontownsfunnyfarm.com/"
-!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\FFLauncher.exe"
-!define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
+${If} ${RunningX64}
+  !define PRODUCT_DIR_REGKEY "Software\WOW6432Node\Microsoft\Windows\CurrentVersion\App Paths\FFLauncher.exe"
+  !define PRODUCT_UNINST_KEY "Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
+${else}
+  !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\FFLauncher.exe"
+  !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
+${EndIf}
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 !define PRODUCT_STARTMENU_REGVAL "NSIS:StartMenuDir"
 
@@ -59,6 +67,11 @@ Function .onInit
   ${IfNot} ${AtLeastWin7}
     MessageBox MB_OK "This application requires Windows 7 or newer."
     Abort
+  ${EndIf}
+
+  ${If} ${RunningX64}
+    ${EnableX64FSRedirection}
+    SetRegView 64
   ${EndIf}
 FunctionEnd
 
