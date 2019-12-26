@@ -121,6 +121,42 @@ Section -Post
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
+
+  ${If} ${RunningX64}
+    ; Install Visual C++ Redistributable for Visual Studio 2015-2019 (x86), if needed
+    ReadRegStr $1 HKLM "SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\X86" "Installed"
+    StrCmp $1 1 x86Installed
+
+    ExecWait "$INSTDIR\VC_redist.x86.exe /install /passive /norestart"
+
+    x86Installed:
+
+    ReadRegStr $1 HKLM "SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\X86" "Version"
+    StrCmp $1 "v14.24.28127.04" x86UpToDate
+
+    ExecWait "$INSTDIR\VC_redist.x86.exe /install /passive /norestart"
+
+    x86UpToDate:
+
+    Delete "$INSTDIR\VC_redist.x86.exe"
+  ${else}
+    ; Install Visual C++ Redistributable for Visual Studio 2015-2019 (x86), if needed
+    ReadRegStr $1 HKLM "SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\X86" "Installed"
+    StrCmp $1 1 x86Installed
+
+    ExecWait "$INSTDIR\VC_redist.x86.exe /install /passive /norestart"
+
+    x86Installed:
+
+    ReadRegStr $1 HKLM "SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\X86" "Version"
+    StrCmp $1 "v14.24.28127.04" x86UpToDate
+
+    ExecWait "$INSTDIR\VC_redist.x86.exe /install /passive /norestart"
+
+    x86UpToDate:
+
+    Delete "$INSTDIR\VC_redist.x86.exe"
+  ${EndIf}
 SectionEnd
 
 
