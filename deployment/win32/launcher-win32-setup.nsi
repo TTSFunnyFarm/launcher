@@ -197,7 +197,6 @@ Section Uninstall
   RMDir "$INSTDIR\platforms"
   RMDir "$INSTDIR\styles"
   RMDir "$INSTDIR"
-  RMDir "$LOCALAPPDATA\Local\Toontown's Funny Farm\win32\resources"
   RMDir "$LOCALAPPDATA\Local\Toontown's Funny Farm\win32\panda3d"
   RMDir "$LOCALAPPDATA\Local\Toontown's Funny Farm\win32\cryptography\hazmat\bindings"
   RMDir "$LOCALAPPDATA\Local\Toontown's Funny Farm\win32\cryptography\hazmat"
