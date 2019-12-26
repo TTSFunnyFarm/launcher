@@ -91,6 +91,8 @@ Section "Toontown's Funny Farm" SEC01
   File "launcher-win64\Qt5Core.dll"
   File "launcher-win64\libcrypto-1_1-x64.dll"
   File "launcher-win64\libssl-1_1-x64.dll"
+  File "launcher-win32\VC_redist.x64.exe"
+  File "launcher-win32\VC_redist.x86.exe"
   SetOutPath "$INSTDIR\platforms"
   File "launcher-win64\platforms\qwindows.dll"
   SetOutPath "$INSTDIR\styles"
@@ -118,6 +120,40 @@ Section -Post
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
+
+  ; Install Visual C++ Redistributable for Visual Studio 2015-2019 (x64), if needed
+  ReadRegStr $1 HKLM "SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\X64" "Installed"
+  StrCmp $1 1 x64Installed
+
+  ExecWait "$INSTDIR\VC_redist.x64.exe /install /passive /norestart"
+
+  x64Installed:
+
+  ReadRegStr $1 HKLM "SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\X64" "Version"
+  StrCmp $1 "v14.24.28127.04" x64UpToDate
+
+  ExecWait "$INSTDIR\VC_redist.x64.exe /install /passive /norestart"
+
+  x64UpToDate:
+
+  Delete "$INSTDIR\VC_redist.x64.exe"
+
+  ; Install Visual C++ Redistributable for Visual Studio 2015-2019 (x86), if needed
+  ReadRegStr $1 HKLM "SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\X86" "Installed"
+  StrCmp $1 1 x86Installed
+
+  ExecWait "$INSTDIR\VC_redist.x86.exe /install /passive /norestart"
+
+  x86Installed:
+
+  ReadRegStr $1 HKLM "SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\X86" "Version"
+  StrCmp $1 "v14.24.28127.04" x86UpToDate
+
+  ExecWait "$INSTDIR\VC_redist.x86.exe /install /passive /norestart"
+
+  x86UpToDate:
+
+  Delete "$INSTDIR\VC_redist.x86.exe"
 SectionEnd
 
 
@@ -144,6 +180,47 @@ Section Uninstall
   Delete "$INSTDIR\libssl-1_1-x64.dll"
   Delete "$INSTDIR\FFLauncher.exe"
 
+  Delete "$APPDATA\Local\Toontown's Funny Farm\cg.dll"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\cgGL.dll"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\funnyfarm.exe"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\libcrypto-1_1.dll"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\libp3direct.dll"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\libp3dtool.dll"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\libp3dtoolconfig.dll"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\libp3interrogatedb.dll"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\libp3openal_audio.dll"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\libp3windisplay.dll"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\libpanda.dll"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\libpandaexpress.dll"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\libpandagl.dll"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\libpandaphysics.dll"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\libssl-1_1.dll"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\python37.dll"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\select.pyd"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\_cffi_backend.pyd"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\_socket.pyd"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\_ssl.pyd"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\resources\phase_3.5.mf"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\resources\phase_3.mf"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\resources\phase_4.mf"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\resources\phase_5.5.mf"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\resources\phase_5.mf"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\resources\phase_6.mf"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\resources\phase_7.mf"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\resources\phase_8.mf"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\resources\phase_9.mf"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\resources\phase_10.mf"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\resources\phase_11.mf"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\resources\phase_12.mf"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\resources\phase_13.mf"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\resources\phase_14.mf"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\panda3d\core.pyd"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\panda3d\direct.pyd"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\panda3d\physics.pyd"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\cryptography\hazmat\bindings\_constant_time.pyd"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\cryptography\hazmat\bindings\_openssl.pyd"
+  Delete "$APPDATA\Local\Toontown's Funny Farm\cryptography\hazmat\bindings\_padding.pyd"
+
   Delete "$SMPROGRAMS\${PRODUCT_NAME}\Uninstall.lnk"
   Delete "$SMPROGRAMS\${PRODUCT_NAME}\Toontown's Funny Farm Official Website.lnk"
   Delete "$DESKTOP\Toontown's Funny Farm.lnk"
@@ -153,6 +230,11 @@ Section Uninstall
   RMDir "$INSTDIR\platforms"
   RMDir "$INSTDIR\styles"
   RMDir "$INSTDIR"
+  RMDir "$APPDATA\Local\Toontown's Funny Farm\resources"
+  RMDir "$APPDATA\Local\Toontown's Funny Farm\panda3d"
+  RMDir "$APPDATA\Local\Toontown's Funny Farm\cryptography\hazmat\bindings"
+  RMDir "$APPDATA\Local\Toontown's Funny Farm\cryptography\hazmat"
+  RMDir "$APPDATA\Local\Toontown's Funny Farm\cryptography"
 
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
   DeleteRegKey HKLM "${PRODUCT_DIR_REGKEY}"
