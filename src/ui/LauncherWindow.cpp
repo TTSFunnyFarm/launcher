@@ -277,6 +277,13 @@ void LauncherWindow::launch_game()
     // Set our working directory to the game location:
     QDir::setCurrent(updater->get_directory());
 
+    // Ensure the runtime application is an executable:
+    QString command = "chmod 755 './funnyfarm'";
+    system(command.toStdString().c_str());
+
+    // Sleep a second to ensure that the file system is caught up:
+    QThread::sleep(1);
+
     // Start the game:
     QProcess process;
     process.start("./funnyfarm");
