@@ -19,7 +19,7 @@ Updater::Updater(QUrl url) :
 #elif defined(Q_OS_WIN) && defined(Q_PROCESSOR_X86_64)
     m_directory = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/win64";
 #else
-    m_directory = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)
+    m_directory = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
 #endif
 }
 
