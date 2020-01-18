@@ -78,6 +78,9 @@ public:
 
     bool isResizable() {return m_bIsResizable;}
 
+    // Hides the window.
+    void hideWindow();
+
 protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);

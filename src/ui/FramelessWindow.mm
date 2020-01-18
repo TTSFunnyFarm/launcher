@@ -446,4 +446,21 @@ void FramelessWindow::setTitlebarVisible(bool bTitlebarVisible)
     }
 }
 
+void FramelessWindow::hideWindow()
+{
+    NSView* view = reinterpret_cast<NSView*>(winId());
+    if (view == nullptr)
+    {
+        return;
+    }
+
+    NSWindow *window = view.window;
+    if (window == nullptr)
+    {
+        return;
+    }
+
+    [window orderOut:view];
+}
+
 #endif // Q_OS_MAC
