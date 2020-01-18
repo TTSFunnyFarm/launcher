@@ -256,7 +256,24 @@ bool LauncherWindow::update_game()
 
 void LauncherWindow::launch_game()
 {
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN)
+    // Set our working directory to the game location:
+    QDir::setCurrent(updater->get_directory());
+
+    // Start the game:
+    QProcess process;
+    process.start("funnyfarm.exe");
+
+    // Hide launcher and wait for application to finish:
+    hide();
+    process.waitForFinished(-1);
+
+    // Go to the main UI:
+    goto_main_ui();
+
+    // Show the launcher:
+    show();
+#elif defined(Q_OS_MAC)
     // Set our working directory to the game location:
     QDir::setCurrent(updater->get_directory());
 
