@@ -279,7 +279,7 @@ void LauncherWindow::launch_game()
 
     // Start the game:
     QProcess process;
-    process.start("funnyfarm.exe");
+    process.start("./funnyfarm");
 
     // Hide launcher and wait for application to finish:
     hide();
