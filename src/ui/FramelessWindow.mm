@@ -39,14 +39,14 @@ FramelessWindow::FramelessWindow(QWidget *parent) :
 
 + (void)closeButtonAction:(id)sender
 {
-    Q_UNUSED(sender);
+    Q_UNUSED(sender)
     NSRunningApplication *currentApp = [NSRunningApplication currentApplication];
     [currentApp hide];
 }
 
 - (void)zoomButtonAction:(id)sender
 {
-    Q_UNUSED(sender);
+    Q_UNUSED(sender)
     if (self.window == nullptr)
     {
         return;
