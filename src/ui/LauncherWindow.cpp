@@ -314,6 +314,9 @@ void LauncherWindow::set_status_text(const QString &status, int pointSize)
     }
     else
     {
+#if defined(Q_OS_MAC)
+        font.setPointSize(15);
+#else
         bool textFits = false;
         while (!textFits)
         {
@@ -330,6 +333,7 @@ void LauncherWindow::set_status_text(const QString &status, int pointSize)
                 font.setPointSize(font.pointSize() - 1);
             }
         }
+#endif
     }
 
     ui->label_status->setFont(font);
