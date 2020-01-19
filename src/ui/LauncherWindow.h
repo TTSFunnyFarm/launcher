@@ -3,6 +3,7 @@
 
 #include "FramelessWindow.h"
 #include "src/updater/Updater.h"
+#include "src/game/GameProcess.h"
 
 #include <QLabel>
 
@@ -33,10 +34,12 @@ private slots:
     void download_progress(qint64 bytes_read, qint64 bytes_total, const QString &status);
 
     void handle_manifest();
+    void handle_update();
 
 private:
     Ui::FFLauncher *ui;
     Updater *updater;
+    GameProcess *game_process;
 
     void setup_fonts();
     void scale_fonts();

@@ -78,7 +78,6 @@ void Updater::update_manifest(const QString &filename)
 
     delete reply;
 
-    emit this->manifest_read();
     emit this->got_manifest();
 }
 

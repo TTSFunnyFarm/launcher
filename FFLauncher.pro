@@ -31,14 +31,16 @@ INCLUDEPATH += \
 SOURCES += \
     src/core/main.cpp \
     src/ui/LauncherWindow.cpp \
-    src/updater/Updater.cpp
+    src/updater/Updater.cpp \
+    src/game/GameProcess.cpp
 
 HEADERS += \
     src/core/Constants.h \
     src/core/Localizer.h \
     src/ui/FramelessWindow.h \
     src/ui/LauncherWindow.h \
-    src/updater/Updater.h
+    src/updater/Updater.h \
+    src/game/GameProcess.h
 
 macx {
     TARGET = "Funny Farm Launcher"

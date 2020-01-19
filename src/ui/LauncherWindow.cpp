@@ -19,7 +19,8 @@
 LauncherWindow::LauncherWindow(QWidget *parent) :
     FramelessWindow(parent),
     ui(new Ui::FFLauncher),
-    updater(new Updater(URL_DOWNLOAD_MIRROR))
+    updater(new Updater(URL_DOWNLOAD_MIRROR)),
+    game_process(new GameProcess())
 {
     // Start up a thread to get up to date with the manifest:
     QFuture<void> manifest_future = QtConcurrent::run(updater, &Updater::update_manifest, MANIFEST_FILENAME);
@@ -107,6 +108,24 @@ void LauncherWindow::handle_manifest()
 
         exit(1);
     }
+}
+
+void LauncherWindow::handle_update()
+{
+    // Attempt to update the game:
+    if (!update_game())
+    {
+        // The update failed, so go back to the main UI state:
+
+        // Go to the main UI:
+        goto_main_ui();
+
+        // We're done!
+        return;
+    }
+
+    // Alright, we're done! Start the game:
+    launch_game();
 }
 
 void LauncherWindow::setup_fonts()
@@ -199,26 +218,8 @@ void LauncherWindow::on_push_button_play_clicked()
 
     // Get up to date with the manifest:
     QFuture<void> manifest_future = QtConcurrent::run(updater, &Updater::update_manifest, MANIFEST_FILENAME);
-    QEventLoop event_loop;
-    QObject::connect(updater, SIGNAL(manifest_read()),
-                     &event_loop, SLOT(quit()));
-    event_loop.exec();
-    manifest_future.waitForFinished();
-
-    // Attempt to update the game:
-    if (!update_game())
-    {
-        // The update failed, so go back to the main UI state:
-
-        // Go to the main UI:
-        goto_main_ui();
-
-        // We're done!
-        return;
-    }
-
-    // Alright, we're done! Start the game:
-    launch_game();
+    QObject::connect(updater, SIGNAL(got_manifest()),
+                     this, SLOT(handle_update()));
 }
 
 void LauncherWindow::on_push_button_website_clicked()

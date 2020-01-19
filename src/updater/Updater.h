@@ -79,7 +79,6 @@ public:
     bool update();
 
 signals:
-    void manifest_read();
     void got_manifest();
     void download_error(int error_code, const QString &error_string);
     void download_progress(qint64 bytes_read, qint64 bytes_total, const QString &status);
