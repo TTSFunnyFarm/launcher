@@ -71,9 +71,9 @@
    <widget class="QLabel" name="label_launcher_version">
     <property name="geometry">
      <rect>
-      <x>835</x>
+      <x>815</x>
       <y>505</y>
-      <width>110</width>
+      <width>130</width>
       <height>20</height>
      </rect>
     </property>
@@ -85,13 +85,13 @@
     </property>
     <property name="minimumSize">
      <size>
-      <width>110</width>
+      <width>130</width>
       <height>20</height>
      </size>
     </property>
     <property name="maximumSize">
      <size>
-      <width>110</width>
+      <width>130</width>
       <height>20</height>
      </size>
     </property>
@@ -111,7 +111,7 @@
 }</string>
     </property>
     <property name="text">
-     <string>Launcher Version</string>
+     <string>Getting Version Info...</string>
     </property>
     <property name="textFormat">
      <enum>Qt::PlainText</enum>
@@ -126,9 +126,9 @@
    <widget class="QLabel" name="label_game_version">
     <property name="geometry">
      <rect>
-      <x>835</x>
+      <x>815</x>
       <y>520</y>
-      <width>110</width>
+      <width>130</width>
       <height>20</height>
      </rect>
     </property>
@@ -140,13 +140,13 @@
     </property>
     <property name="minimumSize">
      <size>
-      <width>110</width>
+      <width>130</width>
       <height>20</height>
      </size>
     </property>
     <property name="maximumSize">
      <size>
-      <width>110</width>
+      <width>130</width>
       <height>20</height>
      </size>
     </property>
@@ -166,7 +166,7 @@
 }</string>
     </property>
     <property name="text">
-     <string>Game Version</string>
+     <string>Getting Version Info...</string>
     </property>
     <property name="textFormat">
      <enum>Qt::PlainText</enum>
