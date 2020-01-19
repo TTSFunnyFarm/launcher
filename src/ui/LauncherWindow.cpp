@@ -21,10 +21,13 @@ LauncherWindow::LauncherWindow(QWidget *parent) :
     ui(new Ui::FFLauncher),
     updater(new Updater(URL_DOWNLOAD_MIRROR))
 {
-    ui->setupUi(this);
+    // Start up a thread to get up to date with the manifest:
+    QFuture<void> manifest_future = QtConcurrent::run(updater, &Updater::update_manifest, MANIFEST_FILENAME);
+    QObject::connect(updater, SIGNAL(got_manifest()),
+                     this, SLOT(handle_manifest()));
 
-    // Get up to date with the manifest:
-    update_manifest();
+    // Set up all UI elements:
+    ui->setupUi(this);
 
     // Set fonts to Impress BT:
     setup_fonts();
@@ -64,10 +67,8 @@ LauncherWindow::~LauncherWindow()
     delete ui;
 }
 
-void LauncherWindow::update_manifest()
+void LauncherWindow::handle_manifest()
 {
-    updater->update_manifest();
-
     // Update the version labels:
     QString game_version = updater->get_game_version();
     QString launcher_version = updater->get_launcher_version();
@@ -197,7 +198,7 @@ void LauncherWindow::on_push_button_play_clicked()
     set_status_text(GUI_CHECKING_FOR_UPDATES, 22);
 
     // Get up to date with the manifest:
-    update_manifest();
+    //update_manifest();
 
     // Attempt to update the game:
     if (!update_game())

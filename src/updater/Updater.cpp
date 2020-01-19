@@ -77,6 +77,8 @@ void Updater::update_manifest(const QString &filename)
     }
 
     delete reply;
+
+    emit this->got_manifest();
 }
 
 void Updater::parse_manifest_data(const QByteArray &data)

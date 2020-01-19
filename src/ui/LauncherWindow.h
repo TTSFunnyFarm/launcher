@@ -18,7 +18,6 @@ public:
     explicit LauncherWindow(QWidget *parent = nullptr);
     ~LauncherWindow();
 
-    void update_manifest();
     bool update_game();
     void launch_game();
 
@@ -32,6 +31,8 @@ private slots:
 
     void download_error(int error_code, const QString &error_string);
     void download_progress(qint64 bytes_read, qint64 bytes_total, const QString &status);
+
+    void handle_manifest();
 
 private:
     Ui::FFLauncher *ui;
