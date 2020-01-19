@@ -267,13 +267,8 @@ void LauncherWindow::launch_game()
     // Set our working directory to the game location:
     QDir::setCurrent(updater->get_directory());
 
-    // Start the game:
-    QProcess process;
-    process.start("funnyfarm.exe");
-
     // Hide launcher and wait for application to finish:
     hide();
-    process.waitForFinished(-1);
 
     // Go to the main UI:
     goto_main_ui();
@@ -291,13 +286,8 @@ void LauncherWindow::launch_game()
     // Sleep a second to ensure that the file system is caught up:
     QThread::sleep(1);
 
-    // Start the game:
-    QProcess process;
-    process.start("./funnyfarm");
-
     // Hide launcher and wait for application to finish:
     hide();
-    process.waitForFinished(-1);
 
     // Go to the main UI:
     goto_main_ui();

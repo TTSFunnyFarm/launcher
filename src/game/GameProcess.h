@@ -10,6 +10,8 @@ class GameProcess : public QObject
 public:
     GameProcess();
     ~GameProcess();
+
+    void launch_game();
 };
 
 #endif // GAMEPROCESS_H
