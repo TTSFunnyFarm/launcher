@@ -198,7 +198,12 @@ void LauncherWindow::on_push_button_play_clicked()
     set_status_text(GUI_CHECKING_FOR_UPDATES, 22);
 
     // Get up to date with the manifest:
-    //update_manifest();
+    QFuture<void> manifest_future = QtConcurrent::run(updater, &Updater::update_manifest, MANIFEST_FILENAME);
+    QEventLoop event_loop;
+    QObject::connect(updater, SIGNAL(manifest_read()),
+                     &event_loop, SLOT(quit()));
+    event_loop.exec();
+    manifest_future.waitForFinished();
 
     // Attempt to update the game:
     if (!update_game())
