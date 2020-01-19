@@ -64,6 +64,7 @@ LauncherWindow::LauncherWindow(QWidget *parent) :
 
 LauncherWindow::~LauncherWindow()
 {
+    delete game_process;
     delete updater;
     delete ui;
 }
