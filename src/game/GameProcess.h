@@ -12,6 +12,9 @@ public:
     ~GameProcess();
 
     void launch_game();
+
+signals:
+    void process_ended();
 };
 
 #endif // GAMEPROCESS_H

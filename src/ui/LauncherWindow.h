@@ -35,6 +35,7 @@ private slots:
 
     void handle_manifest();
     void handle_update();
+    void handle_game_exit();
 
 private:
     Ui::FFLauncher *ui;

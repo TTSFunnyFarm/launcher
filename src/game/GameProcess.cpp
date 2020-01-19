@@ -19,6 +19,8 @@ void GameProcess::launch_game()
 
     // Wait for the process to finish:
     process.waitForFinished(-1);
+
+    emit this->process_ended();
 #elif defined(Q_OS_MAC)
     // Start the game:
     QProcess process;
@@ -26,5 +28,7 @@ void GameProcess::launch_game()
 
     // Wait for the process to finish:
     process.waitForFinished(-1);
+
+    emit this->process_ended();
 #endif
 }

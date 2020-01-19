@@ -267,14 +267,13 @@ void LauncherWindow::launch_game()
     // Set our working directory to the game location:
     QDir::setCurrent(updater->get_directory());
 
-    // Hide launcher and wait for application to finish:
+    // Hide launcher:
     hide();
 
-    // Go to the main UI:
-    goto_main_ui();
-
-    // Show the launcher:
-    show();
+    // Start up a thread to launch the game:
+    QFuture<void> game_future = QtConcurrent::run(game_process, &GameProcess::launch_game);
+    QObject::connect(game_process, SIGNAL(process_ended()),
+                     this, SLOT(handle_game_exit()));
 #elif defined(Q_OS_MAC)
     // Set our working directory to the game location:
     QDir::setCurrent(updater->get_directory());
@@ -286,15 +285,23 @@ void LauncherWindow::launch_game()
     // Sleep a second to ensure that the file system is caught up:
     QThread::sleep(1);
 
-    // Hide launcher and wait for application to finish:
+    // Hide launcher:
     hide();
 
+    // Start up a thread to launch the game:
+    QFuture<void> game_future = QtConcurrent::run(game_process, &GameProcess::launch_game);
+    QObject::connect(game_process, SIGNAL(process_ended()),
+                     this, SLOT(handle_game_exit()));
+#endif
+}
+
+void LauncherWindow::handle_game_exit()
+{
     // Go to the main UI:
     goto_main_ui();
 
     // Show the launcher:
     show();
-#endif
 }
 
 void LauncherWindow::set_status_text(const QString &status, int pointSize)
