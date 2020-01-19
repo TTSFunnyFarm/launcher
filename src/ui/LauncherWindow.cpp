@@ -23,7 +23,7 @@ LauncherWindow::LauncherWindow(QWidget *parent) :
     game_process(new GameProcess())
 {
     // Start up a thread to get up to date with the manifest:
-    QFuture<void> manifest_future = QtConcurrent::run(updater, &Updater::update_manifest, MANIFEST_FILENAME);
+    QFuture<void> manifest_future = QtConcurrent::run(updater, &Updater::update_manifest, false, MANIFEST_FILENAME);
     QObject::connect(updater, SIGNAL(got_manifest()),
                      this, SLOT(handle_manifest()));
 
@@ -218,8 +218,8 @@ void LauncherWindow::on_push_button_play_clicked()
     set_status_text(GUI_CHECKING_FOR_UPDATES, 22);
 
     // Get up to date with the manifest:
-    QFuture<void> manifest_future = QtConcurrent::run(updater, &Updater::update_manifest, MANIFEST_FILENAME);
-    QObject::connect(updater, SIGNAL(got_manifest()),
+    QFuture<void> manifest_future = QtConcurrent::run(updater, &Updater::update_manifest, true, MANIFEST_FILENAME);
+    QObject::connect(updater, SIGNAL(files_downloaded()),
                      this, SLOT(handle_update()));
 }
 

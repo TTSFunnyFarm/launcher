@@ -54,7 +54,7 @@ QString Updater::get_directory()
     return m_directory;
 }
 
-void Updater::update_manifest(const QString &filename)
+void Updater::update_manifest(bool download_files, const QString &filename)
 {
     // Clear the data from the previous manifest:
     m_game_version = "";
@@ -73,7 +73,7 @@ void Updater::update_manifest(const QString &filename)
 
     if (reply->error() == QNetworkReply::NoError)
     {
-        this->parse_manifest_data(reply->readAll());
+        this->parse_manifest_data(reply->readAll(), download_files);
     }
 
     delete reply;
@@ -81,7 +81,7 @@ void Updater::update_manifest(const QString &filename)
     emit this->got_manifest();
 }
 
-void Updater::parse_manifest_data(const QByteArray &data)
+void Updater::parse_manifest_data(const QByteArray &data, bool download_files)
 {
     QJsonDocument document = QJsonDocument::fromJson(data);
     QJsonObject object = document.object();
@@ -95,7 +95,7 @@ void Updater::parse_manifest_data(const QByteArray &data)
         m_launcher_version = object["launcher-version"].toString();
     }
 
-    if (object.contains("files"))
+    if (object.contains("files") && download_files)
     {
         m_files = {}; // Clear m_files
         QJsonObject files = object["files"].toObject();
@@ -136,6 +136,8 @@ void Updater::parse_manifest_data(const QByteArray &data)
 
             file.close();
         }
+
+        emit this->files_downloaded();
     }
 }
 

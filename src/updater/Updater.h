@@ -74,12 +74,13 @@ public:
     QString get_game_version();
     QString get_directory();
 
-    void update_manifest(const QString &filename);
-    void parse_manifest_data(const QByteArray &data);
+    void update_manifest(bool download_files, const QString &filename);
+    void parse_manifest_data(const QByteArray &data, bool download_files);
     bool update();
 
 signals:
     void got_manifest();
+    void files_downloaded();
     void download_error(int error_code, const QString &error_string);
     void download_progress(qint64 bytes_read, qint64 bytes_total, const QString &status);
     void extract_finished();
