@@ -113,6 +113,12 @@ void LauncherWindow::handle_manifest()
 
 void LauncherWindow::handle_update()
 {
+    // Kill the update connection:
+    if (m_update_connection)
+    {
+        QObject::disconnect(m_update_connection);
+    }
+
     // Attempt to update the game:
     if (!update_game())
     {
@@ -218,9 +224,14 @@ void LauncherWindow::on_push_button_play_clicked()
     set_status_text(GUI_CHECKING_FOR_UPDATES, 22);
 
     // Get up to date with the manifest:
+    if (m_update_connection)
+    {
+        QObject::disconnect(m_update_connection);
+    }
+
     QFuture<void> manifest_future = QtConcurrent::run(updater, &Updater::update_manifest, true, MANIFEST_FILENAME);
-    QObject::connect(updater, SIGNAL(files_downloaded()),
-                     this, SLOT(handle_update()));
+    m_update_connection = QObject::connect(updater, SIGNAL(files_downloaded()),
+                                           this, SLOT(handle_update()));
 }
 
 void LauncherWindow::on_push_button_website_clicked()

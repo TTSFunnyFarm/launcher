@@ -49,6 +49,7 @@ private:
     void set_status_text(const QString &status, int pointSize = 0);
 
     float m_scale;
+    QMetaObject::Connection m_update_connection;
 };
 
 #endif // LAUNCHERWINDOW_H
